@@ -1,6 +1,6 @@
 package Model;
 
-public class Trader {
+public abstract class Trader {
 
     private String firstName;
     private String lastName;

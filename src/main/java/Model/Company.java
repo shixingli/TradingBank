@@ -1,6 +1,6 @@
 package Model;
 
-public class Company {
+class Company {
 
     private String name;
     private String ticker;

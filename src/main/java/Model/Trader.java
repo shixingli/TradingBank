@@ -6,4 +6,5 @@ public class Trader {
     private String lastName;
     private String id;
     private String password;
+
 }

@@ -5,15 +5,15 @@ public abstract class Account {
     private double balance;
 
     public boolean deposit(double num) {
-        this.balance += sum;
+        this.balance += num;
         return true;
     }
 
     public boolean withDraw(double num) {
-        if (this.balance - sum < 0) {
+        if (this.balance - num < 0) {
             return false;
         } else {
-            this.balance -= sum;
+            this.balance -= num;
             return true;
         }
     }

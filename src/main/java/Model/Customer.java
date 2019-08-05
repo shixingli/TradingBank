@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.List;
+
 public class Customer extends Trader{
 
     private CheckingAccount checkingAccount;

@@ -5,14 +5,17 @@ import java.util.Map;
 
 public class Bond {
 
-    /**
-     * Type values;
-     * "1 Week"
-     * "1 Month"
-     * "3 Months"
-     */
-    private String type;
+    private String name;
+    private int period;
     private String buyDate;
-
+    private double value;
+    
+    public void updateBond(double value) {
+    	this.value = value;
+    }
+    
+    public int getPeriod() {
+    	return period;
+    }
 
 }

@@ -6,11 +6,5 @@ import java.util.Map;
 
 public class Transaction {
 
-    /**
-     * Key values
-     * Checking Account
-     * Saving Account
-     * Security Account
-     */
-    private Map<String, ArrayList<String>> record;
+	private Map<String, ArrayList<String>> record;
 }

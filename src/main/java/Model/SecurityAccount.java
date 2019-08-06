@@ -13,19 +13,19 @@ public class SecurityAccount extends Account {
     private double unrealizedProfit;
     private double realizedProfit;
 
-//    public boolean buyStock(Stock stock, int num) {
-//        return false;
-//    }
-//
-//    public boolean sellStock(Stock stock, int num) {
-//        return false;
-//    }
-//
-//    public boolean buyBond(Bond bond, int num) {
-//        return false;
-//    }
-//
-//    public boolean sellBond(Bond bond, int num) {
-//        return false;
-//    }
+    public boolean buyStock(Stock stock, int num) {
+        return false;
+    }
+
+    public boolean sellStock(Stock stock, int num) {
+        return false;
+    }
+
+    public boolean buyBond(Bond bond, int num) {
+        return false;
+    }
+
+    public boolean sellBond(Bond bond, int num) {
+        return false;
+    }
 }

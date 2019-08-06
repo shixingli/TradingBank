@@ -1,7 +1,5 @@
 package Model;
 
-import java.util.List;
-
 public class Customer extends Trader{
 
     private CheckingAccount checkingAccount;
@@ -9,5 +7,29 @@ public class Customer extends Trader{
     private SecurityAccount securityAccount;
     private Transaction transaction;
 
+    public Customer(String firstName, String lastName, String id, String password) {
+    	super(firstName, lastName, id, password);
+    	
+    	transaction = new Transaction();
+    	
+    	checkingAccount = null;
+    	savingAccount = null;
+    	securityAccount = null;
+    }
     
+    public Transaction getTransaction() {
+    	return transaction;
+    }
+    
+    public CheckingAccount getCheckingAccount() {
+    	return checkingAccount;
+    }
+    
+    public SavingAccount getSavingAccount() {
+    	return savingAccount;
+    }
+    
+    public SecurityAccount getSecurityAccount() {
+    	return securityAccount;
+    }
 }

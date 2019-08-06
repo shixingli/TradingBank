@@ -16,20 +16,24 @@ public class SecurityAccount extends Account {
     public SecurityAccount() {
     	super(5000);
     }
-
-    public boolean buyStock(Stock stock, int num) {
-        return false;
+    
+    //name of stock, number of shares to buy, buy date
+    public String buyStock(String name, int num, String date) {
+        if(super.getBalance() < MINIMUM_START_NUM)
+        	return false;
+    }
+    
+    //name of stock, number of shares to buy, sell date
+    public String sellStock(String name, int num, String date) {
+        	return false;
+    }
+    
+    //period of bonds, value to buy, bond id
+    public String buyBond(int period, double value, String id) {
+        	return false;
     }
 
-    public boolean sellStock(Stock stock, int num) {
-        return false;
-    }
-
-    public boolean buyBond(Bond bond, int num) {
-        return false;
-    }
-
-    public boolean sellBond(Bond bond, int num) {
-        return false;
+    public String sellBond(String id) {
+        	return false;
     }
 }

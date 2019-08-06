@@ -1,12 +1,15 @@
 package Model;
 
 public abstract class Account {
+    private double balance;
 	
+    public double getBalance() {
+    	return balance;
+    }
+    
 	public Account(double balance) {
 		this.balance = balance;
 	}
-
-    private double balance;
 
     public boolean deposit(double num) {
         this.balance += num;

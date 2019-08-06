@@ -12,9 +12,9 @@ public class Customer extends Trader{
     	
     	transaction = new Transaction();
     	
-    	checkingAccount = null;
-    	savingAccount = null;
-    	securityAccount = null;
+    	checkingAccount = new CheckingAccount();
+    	savingAccount = new SavingAccount();
+    	securityAccount = new SecurityAccount();
     }
     
     public Transaction getTransaction() {

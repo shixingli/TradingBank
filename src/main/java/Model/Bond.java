@@ -10,8 +10,16 @@ public class Bond {
     private String buyDate;
     private double value;
     
-    public void updateBond(double value) {
+    public void setValue(double value) {
     	this.value = value;
+    }
+    
+    public double getValue() {
+    	return value;
+    }
+    
+    public String getBuyDate() {
+    	return buyDate;
     }
     
     public int getPeriod() {

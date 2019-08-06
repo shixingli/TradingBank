@@ -1,6 +1,10 @@
 package Model;
 
 public abstract class Account {
+	
+	public Account(double balance) {
+		this.balance = balance;
+	}
 
     private double balance;
 

@@ -12,6 +12,10 @@ public class SecurityAccount extends Account {
 
     private double unrealizedProfit;
     private double realizedProfit;
+    
+    public SecurityAccount() {
+    	super(5000);
+    }
 
     public boolean buyStock(Stock stock, int num) {
         return false;

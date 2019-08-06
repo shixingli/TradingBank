@@ -38,8 +38,10 @@ public class SecurityAccount extends Account {
         	
         	//add the stock into the map
         	//num means the amount of shares of the stock, need to add the new amount and the old one togethers
-        	ownedStocks.put(Manager.stockMap.get(name), ownedStocks.get(Manager.stockMap.get(name))+ num);
-        	
+        	if(ownedStocks.containsKey(name))
+        		ownedStocks.put(Manager.stockMap.get(name), ownedStocks.get(Manager.stockMap.get(name))+ num);
+        	else
+        		ownedStocks.put(Manager.stockMap.get(name), num);
         	return "Success!";
         }	
     }
@@ -49,41 +51,41 @@ public class SecurityAccount extends Account {
         	return "success!";
     }
     
-    //period of bonds, value to buy, bond id
-    public String buyBond(int period, double value, String id) {
+    //period of bonds, amount of money to buy bond, bond id
+    public String buyBond(int period, double money, String id, String buyDate) {
     	//check if enough money for buying the bond
-        if(value > super.getBalance())    	
+        if(money > super.getBalance())    	
         	return "No enough money!";
         
         else {
-        	//go through the whole arraylist for every bond
-        	for(Bond bond : Manager.bonds) {
-        		//find the one has the passed id
-        		if(bond.getID().equals(id)) {
-        			//then add the bond into the map
-        			ownedBonds.put(bond, ownedBonds.get(bond)+ value);
-        			
-                	//withdraw the same amount money as money for purchasing
-                	super.withDraw(value);
-                	super.withDraw(FEE);
+        	//create a bond instance
+        	Bond bond = new Bond(id, period, buyDate, Manager.bondMap.get(period));
+        	Manager.bonds.add(bond);
+        	//then add the bond into the map
+        	if(ownedBonds.containsKey(bond))
+        		ownedBonds.put(bond, ownedBonds.get(bond)+ money);
+        	else
+        		ownedBonds.put(bond, money);
+            
+        	//withdraw the same amount money as money for purchasing
+            super.withDraw(money);
+            super.withDraw(FEE);
                 	
-        			return "Success!";
-        		}      
-        	}	
-    		return "Bond not found!";
-        }
+        	return "Success!";
+        }      	
     }
 
     public String sellBond(String id) {
     	//find the one has the passed id
     	for(Bond bond : Manager.bonds) {
-    		if(bond.getID().equals(id)) {
+    		if(bond.getID().equals(id) && ownedBonds.containsKey(bond)) {	
+    			
+    			//deposit the money of that bond into the account
+    			super.deposit((1+Manager.bondMap.get(bond.getPeriod())) * ownedBonds.get(bond));
+    			super.withDraw(FEE);
+    			
     			//then delete the bond from the map
     			ownedBonds.remove(bond);
-    			
-    			//and deposit the money of that bond into the account
-    			super.deposit(bond.getValue());
-    			super.withDraw(FEE);
     			
     			return "Success!";
     		}
@@ -94,5 +96,13 @@ public class SecurityAccount extends Account {
     
     public String toString() {
     	return "Security account 1234 balance: " + super.getBalance() + " unrealizedProfit: " + unrealizedProfit +" realizedProfit: " + realizedProfit;
+    }
+    
+    public Map<Stock, Integer> getOwnedStocks(){
+    	return ownedStocks;
+    }
+    
+    public Map<Bond, Double> getOwnedBonds(){
+    	return ownedBonds;
     }
 }

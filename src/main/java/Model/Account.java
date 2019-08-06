@@ -26,9 +26,10 @@ public abstract class Account {
     }
 
     public String transferTo(Account account, double num) {
-        if (this.withDraw(num).equals("Success")) {
+        if (this.withDraw(num).equals("Success!")) {
             account.deposit(num);
             return "Success!";
-        } else return "No enough money!";
+        } 
+        else return "No enough money!";
     }
 }

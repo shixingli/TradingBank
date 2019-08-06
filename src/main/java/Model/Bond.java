@@ -6,14 +6,12 @@ import java.util.Map;
 public class Bond {
 	
 	private String id;
-    private String name;
     private int period;
     private String buyDate;
     private double value;
     
-    public Bond(String id, String name, int period, String buyDate, double value) {
+    public Bond(String id, int period, String buyDate, double value) {
     	this.id = id;
-    	this.name = name;
     	this.period = period;
     	this.buyDate = buyDate;
     	this.value = value;
@@ -40,7 +38,7 @@ public class Bond {
     }
     
     public String toString() {
-    	return "Bond id " + id + " bond name " + name + " period " + period + " bond buyDate " + buyDate + " bond value " + value;
+    	return "Bond id " + id + " period " + period + " bond buyDate " + buyDate + " bond value " + value;
     }
 
 }

@@ -56,6 +56,12 @@ public class Manager extends Trader{
     	stockMap.put(stock.getCompany().getName(), stock);
     }
     
+    public void addBond(Bond bond) {
+    	
+    	bonds.add(bond);
+    	bondMap.put(bond.getPeriod(), bond.getValue());
+    }
+    
     public void addCustomer(Customer customer) {
     	customerList.add(customer);
     }

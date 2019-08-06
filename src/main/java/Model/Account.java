@@ -11,24 +11,24 @@ public abstract class Account {
 		this.balance = balance;
 	}
 
-    public boolean deposit(double num) {
+    public String deposit(double num) {
         this.balance += num;
-        return true;
+        	return "Success!";
     }
 
-    public boolean withDraw(double num) {
+    public String withDraw(double num) {
         if (this.balance - num < 0) {
-            return false;
+        	return "No enough money!";
         } else {
             this.balance -= num;
-            return true;
+            return "Success!";
         }
     }
 
-    public boolean transferTo(Account account, double num) {
-        if (this.withDraw(num)) {
+    public String transferTo(Account account, double num) {
+        if (this.withDraw(num).equals("Success")) {
             account.deposit(num);
-            return true;
-        } else return false;
+            return "Success!";
+        } else return "No enough money!";
     }
 }

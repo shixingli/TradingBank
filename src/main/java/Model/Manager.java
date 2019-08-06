@@ -13,6 +13,8 @@ public class Manager extends Trader{
     
 	public static List<Stock> stocks = new ArrayList<Stock>();
 	
+	public static List<Bond> bonds = new ArrayList<Bond>();
+	
 	public static Map<String, Stock> stockMap = new HashMap<String, Stock>();
 	
 	public static Map<Integer, Double> bondMap = new HashMap<Integer, Double>();
@@ -21,17 +23,31 @@ public class Manager extends Trader{
     
     public Manager(String firstName, String lastName, String id, String password) {
     	super(firstName, lastName, id, password);
+    	
     	bondMap.put(7, 0.08);
     	bondMap.put(30, 0.1);
     	bondMap.put(90, 0.3);
     }	
     
-    public void updateStock(String name, String date, double newValue) {
-    	stockMap.get(name).updateStock(date, newValue);
+    public String updateStock(String name, String date, double newValue) {
+    	
+    	if(stockMap.containsKey(name)) {
+    		stockMap.get(name).updateStock(date, newValue);
+    		
+    		return "Success!";
+    	}
+    	return "No such stock!";
     }
     
-    public void updateBond(Integer i, double newValue) {
-    	bondMap.put(i,newValue);
+    public String updateBond(Integer i, double newValue) {
+    	
+    	if(bondMap.containsKey(i)) {
+    		bondMap.put(i,newValue);
+    		
+    		return "Success!";
+    	}
+    	
+    	return "No such Bond!";
     }
     
     public void addStock(Stock stock) {

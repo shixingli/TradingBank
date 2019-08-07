@@ -20,6 +20,7 @@ public class CustomerMainController {
         updateAccountInfo(customerMainFrame, customer);
         customerMainFrame.getAmount_money_txtfiled().setText("");
         customerMainFrame.getGroup().clearSelection();
+        hideComboBox(customerMainFrame);
     }
 
     public static void refreshLowerComboBox(CustomerMainFrame customerMainFrame, String currentType) {
@@ -47,6 +48,14 @@ public class CustomerMainController {
         }
     }
 
+    public static void hideComboBox(CustomerMainFrame customerMainFrame) {
+        customerMainFrame.getBottom_inner_panel().setVisible(false);
+    }
+
+    public static void showComboBox(CustomerMainFrame customerMainFrame) {
+        customerMainFrame.getBottom_inner_panel().setVisible(true);
+    }
+
     public static void transaction(CustomerMainFrame customerMainFrame, Customer customer) {
         if (Tools.checkValidNumber(customerMainFrame, customerMainFrame.getAmount_money_txtfiled().getText())) {
             double value = Double.parseDouble(customerMainFrame.getAmount_money_txtfiled().getText());
@@ -69,7 +78,6 @@ public class CustomerMainController {
             updateAccountInfo(customerMainFrame, customer);
         }
     }
-
 
     /****************************************************************************
      *                        private methods

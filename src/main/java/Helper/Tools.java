@@ -20,6 +20,7 @@ public class Tools {
     public static final String ERROR_EMPTY_STRING = "Empty id is not accepted";
     public static final String ERROR_DUPLICATE_STRING = "Id you enter is already used by other customer";
     public static final String[] ACCOUNT_TYPE = {"Checking Account", "Saving Account", "Security Account"};
+    public static final String[] Bond_TYPE = {"7 days Bond", "1 Month Bond", "3 Months Bond"};
 
 
     /************************************************************************
@@ -80,6 +81,10 @@ public class Tools {
         }
 
         return true;
+    }
+
+    public static String getFirstElementBeforeSpace(String input) {
+        return input.trim().split(" ")[0];
     }
 
     public static <T extends JFrame> void showWindow(T frame) {

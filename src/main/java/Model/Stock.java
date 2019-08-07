@@ -15,8 +15,8 @@ public class Stock {
     	
     	priceInfo = new HashMap<String, Double>();
     	priceInfo.put("20180804", 12.12);
-    	priceInfo.put("20170804", 45.45);
-    	priceInfo.put("20190804", 56.56);
+    	priceInfo.put("20180810", 45.45);
+    	priceInfo.put("20180815", 56.56);
     	
     }
     

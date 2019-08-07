@@ -34,6 +34,6 @@ public class Customer extends Trader{
     }
     
     public String toString() {
-    	return "customer's first name: " + super.getFirstName() + "\ncustomer's last name: " + super.getLastName() + "\ncustomer's " + getCheckingAccount().toString() + "\ncustomer's " + getSavingAccount().toString() + "\ncustomer's " + getSecurityAccount().toString();
+    	return "customer's last name: " + super.getLastName() + "\ncustomer's " + getCheckingAccount().toString() + "\ncustomer's " + getSavingAccount().toString() + "\ncustomer's " + getSecurityAccount().toString();
     }
 }

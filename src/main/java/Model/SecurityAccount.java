@@ -1,5 +1,6 @@
 package Model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +14,8 @@ public class SecurityAccount extends Account {
     private static final double MINIMUM_START_NUM = 5000;
     private static final double FEE = 0.15876;
 
-    private Map<Stock, Integer> ownedStocks;
+    //private Map<Stock, Integer> ownedStocks;
+    private Map<Stock, Map<String, ArrayList<Integer>>> ownedStocks;
     private Map<Bond, Double> ownedBonds;
 
     private double unrealizedProfit;
@@ -22,7 +24,8 @@ public class SecurityAccount extends Account {
     public SecurityAccount() {
     	super(MINIMUM_START_NUM);
     	
-    	ownedStocks = new HashMap<Stock, Integer>();
+    	//ownedStocks = new HashMap<Stock, Integer>();
+    	ownedStocks = new HashMap<Stock, Map<String, ArrayList<Integer>>>();
     	ownedBonds = new HashMap<Bond, Double>();
     			
     	unrealizedProfit = 0;
@@ -40,12 +43,36 @@ public class SecurityAccount extends Account {
         	super.withDraw(Manager.stockMap.get(name).getValue(date) * num);
         	super.withDraw(FEE);
         	
+        	//calculate the unrealizedProfit
+			unrealizedProfit = 0;
+			
+			//calculate the realizedProfit
+			realizedProfit = realizedProfit - (num * Manager.stockMap.get(name).getValue(date));
+        	
         	//add the stock into the map
         	//num means the amount of shares of the stock, need to add the new amount and the old one togethers
-        	if(ownedStocks.containsKey(name))
-        		ownedStocks.put(Manager.stockMap.get(name), ownedStocks.get(Manager.stockMap.get(name))+ num);
+        	if(ownedStocks.containsKey(Manager.stockMap.get(name))) {
+        		if(ownedStocks.get(Manager.stockMap.get(name)).containsKey(date))
+        			ownedStocks.get(Manager.stockMap.get(name)).get(date).add(num);
+        		else
+        		{
+        			ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        		
+        			arrayList.add(num);
+        			
+        			ownedStocks.get(Manager.stockMap.get(name)).put(date, arrayList);
+        		}
+        	}
         	else
-        		ownedStocks.put(Manager.stockMap.get(name), num);
+        	{
+        		Map<String, ArrayList<Integer>> map = new HashMap<String, ArrayList<Integer>>();
+        		ArrayList<Integer> arrayList = new ArrayList<Integer>();	
+    			arrayList.add(num);
+    			
+        		map.put(date, arrayList);
+        		
+        		ownedStocks.put(Manager.stockMap.get(name), map);
+        	}
         	return "Success!";
         }	
     }
@@ -53,23 +80,35 @@ public class SecurityAccount extends Account {
     //name of stock, number of shares to buy, sell date
     public String sellStock(String name, int num, String date) {
     		//find the stock with the name
-    		if(Manager.stockMap.containsKey(name) && ownedStocks.containsValue(Manager.stockMap.get(name))) {
-    			Stock stock = Manager.stockMap.get(name);
+    		if(Manager.stockMap.containsKey(name) && ownedStocks.containsKey(Manager.stockMap.get(name))) {
+    			//record the number of shares of a stock
+    			int n = 0;
+    		
+    			for(int i = 0; i < ownedStocks.get(Manager.stockMap.get(name)).get(date).size(); i++)
+    				n = n + ownedStocks.get(Manager.stockMap.get(name)).get(date).get(i);
     			
-    			//calculate the unrealizedProfit
-    			unrealizedProfit = ownedStocks.get(stock) * stock.getValue(date);
-    			
-    			//calculate the realizedProfit
-    			realizedProfit = num * 123;
-    			
-    			//deposit the money of that stock into the account
-    			super.deposit(realizedProfit);
-    			super.withDraw(FEE);
-    			
-    			//then delete the stock from the map
-    			ownedStocks.remove(stock);
-    			
-    			return "Success!";
+    			//check if enough shares of stock to sell
+    			if(n>num) {
+	    			
+	    			Stock stock = Manager.stockMap.get(name);
+	    			
+	    			//calculate the unrealizedProfit
+	    			unrealizedProfit = num * stock.getValue(date);
+	    			
+	    			//calculate the realizedProfit
+	    			realizedProfit = realizedProfit + (num * stock.getValue(date));
+	    			
+	    			//deposit the money of that stock into the account
+	    			super.deposit(unrealizedProfit);
+	    			super.withDraw(FEE);
+	    			
+	    			//then put a negative num into the arraylist indicating the sold shares of the stock
+	    			ownedStocks.get(Manager.stockMap.get(name)).get(date).add(-num);
+	    			
+	    			return "Success!";
+    			}
+    			else
+    				return "No enough shares of that stock!";
     		}
     		else 
     			return "No such Stock!";
@@ -89,7 +128,7 @@ public class SecurityAccount extends Account {
 	           break; 
 	        case 90 :
 	        	money = 3362.08;
-	            break; 
+	            break; 	
     	}	
     	
     	//check if enough money for buying the bond
@@ -148,16 +187,26 @@ public class SecurityAccount extends Account {
     	return "Security account 1234 \nbalance: " + super.getBalance() + "\nunrealizedProfit: " + unrealizedProfit +"\nrealizedProfit: " + realizedProfit;
     }
     
-    public Map<Stock, Integer> getOwnedStocks(){
+    public Map<Stock, Map<String, ArrayList<Integer>>> getOwnedStocks(){
     	return ownedStocks;
     }
     
-    public ArrayList<String> getStocks(String date){
+    //show the number of shares of a stock
+    public ArrayList<String> showOwnedStocks(){
     	ArrayList<String> arr = new ArrayList<String>();
-    	arr.add("Ticker"+"  "+"Price");
     	
-    	for(Stock stock : Manager.stocks)
-    		arr.add(stock.getCompany().getTicker() + "  " + Manager.stockMap.get(date).getValue(date));
+    	arr.add("Ticker"+"  "+"Number");
+    	
+    	for(Stock stock : ownedStocks.keySet()) {
+    		int num = 0;
+    		
+    		for(String date : ownedStocks.get(stock).keySet())
+    			for(int i = 0; i < ownedStocks.get(stock).get(date).size(); i++)
+    				num = num + ownedStocks.get(stock).get(date).get(i);
+    		
+    		arr.add(stock.getCompany().getTicker() + "  " + num);
+    	}
+    	
     	return arr;
     }
     

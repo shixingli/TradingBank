@@ -10,6 +10,7 @@ public class Bond {
     private String buyDate;
     private double value;
     
+    //value means interestp
     public Bond(String id, int period, String buyDate, double value) {
     	this.id = id;
     	this.period = period;

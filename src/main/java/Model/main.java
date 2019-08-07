@@ -15,11 +15,11 @@ public class main {
 		Stock sa = new Stock(c);
 		manager.addStock(sa);
 		
-		customer.getCheckingAccount().deposit(100);
-		customer.getCheckingAccount().transferTo(customer.getSavingAccount(), 23);
-		System.out.println(customer.getCheckingAccount().toString());
-		System.out.println(customer.getSavingAccount().toString());
-		System.out.println(customer.getSecurityAccount().toString());
+//		customer.getCheckingAccount().deposit(100);
+//		customer.getCheckingAccount().transferTo(customer.getSavingAccount(), 23);
+//		System.out.println(customer.getCheckingAccount().toString());
+//		System.out.println(customer.getSavingAccount().toString());
+//		System.out.println(customer.getSecurityAccount().toString());
 //		manager.updateStock(company.getName(), "20180804", 123.3);
 		
 //		for(Stock s : Manager.stocks)
@@ -39,21 +39,57 @@ public class main {
 //		
 //		System.out.println(customer.getSecurityAccount().sellBond("ASD123"));
 //		
-		System.out.println(customer.getSecurityAccount().toString());
+//		System.out.println(customer.getSecurityAccount().toString());
 		
 //	    customer.getSecurityAccount().buyBond(7, "LASD","20180705");
 	    
-	    System.out.println(customer.getSecurityAccount().buyBond(30, "LASD123","20180905"));
-	    
-	    System.out.println(customer.getSecurityAccount().getOwnedBonds().keySet());
-	    
-		System.out.println(customer.getSecurityAccount().toString());
+//	    System.out.println(customer.getSecurityAccount().buyBond(30, "LASD123","20180905"));
+//	    
+//	    System.out.println(customer.getSecurityAccount().getOwnedBonds().keySet());
+//	    
+//		System.out.println(customer.getSecurityAccount().toString());
+//		
+//		System.out.println(customer.getSecurityAccount().sellBond("LASD123","20181028"));
+//		
+//		System.out.println(customer.getSecurityAccount().getOwnedBonds().keySet());
+//		
+//		System.out.println(customer.getSecurityAccount().toString());
 		
-		System.out.println(customer.getSecurityAccount().sellBond("LASD123","20181028"));
+//		System.out.println(customer.getSecurityAccount().toString());
+//		
+//		System.out.println(customer.getSecurityAccount().buyStock("Apple", 10, "20180804"));
+//		
+//		System.out.println(customer.getSecurityAccount().getOwnedStocks().keySet());
+//		
+//		System.out.println(customer.getSecurityAccount().toString());
+//		
+//		System.out.println(customer.getSecurityAccount().buyStock("Apple", 20, "20180810"));
+//		
+//		System.out.println(customer.getSecurityAccount().getOwnedStocks().keySet());
+//		
+//		System.out.println(customer.getSecurityAccount().toString());
+//		
+//		System.out.println(customer.getSecurityAccount().getOwnedStocks().get(stock));
+//		
+//		System.out.println(customer.getSecurityAccount().sellStock("Apple", 25, "20180815"));
+//
+//		System.out.println(customer.getSecurityAccount().getOwnedStocks().get(stock));
+//		
+//		System.out.println(customer.getSecurityAccount().toString());
 		
-		System.out.println(customer.getSecurityAccount().getOwnedBonds().keySet());
+//		System.out.println(Manager.stocks.size());
+//		
+//		System.out.println(Manager.getStocks("20180815"));
 		
-		System.out.println(customer.getSecurityAccount().toString());
+//		System.out.println(customer.getSecurityAccount().buyStock("Apple", 10, "20180810"));
+//		
+//		System.out.println(customer.getSecurityAccount().buyStock("Apple", 10, "20180810"));
+//		
+//		System.out.println(customer.getSecurityAccount().sellStock("Apple", 15, "20180810"));
+//		
+//		System.out.print(customer.getSecurityAccount().getOwnedStocks().get(stock));
+//		
+//		System.out.print(customer.getSecurityAccount().showOwnedStocks());
 	}
 
 }

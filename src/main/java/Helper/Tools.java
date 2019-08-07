@@ -47,21 +47,14 @@ public class Tools {
     public static long getDateDifference(String date1, String date2){
 
         try {
-            // ?????????????????????
+            // get how many days between date 1 and date 2
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
             Date startDate = simpleDateFormat.parse(date1);
-            System.out.println(startDate.getTime());
             Date endDate = simpleDateFormat.parse(date2);
-            System.out.println(startDate.getTime());
-            System.out.println(endDate.getTime());
-            return (TimeUnit.DAYS.convert(Math.abs(startDate.getTime() - endDate.getTime()), TimeUnit.MILLISECONDS));
+            return (int)(TimeUnit.DAYS.convert(Math.abs(startDate.getTime() - endDate.getTime()), TimeUnit.MILLISECONDS));
         } catch (Exception e) {
             return -1;
         }
-    }
-
-    public static void main(String[] args) {
-        System.out.println(getDateDifference("20181120", "20190806"));
     }
 
 //    public static String dateFormalize() {

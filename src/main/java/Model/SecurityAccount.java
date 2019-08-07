@@ -1,8 +1,12 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import Helper.Tools;
+import Helper.*;
 
 public class SecurityAccount extends Account {
 
@@ -28,7 +32,7 @@ public class SecurityAccount extends Account {
     //name of stock, number of shares to buy, buy date
     public String buyStock(String name, int num, String date) {
     	//check if enough money for buying the stock
-        if(Manager.stockMap.get(name).getValue(date) * num > super.getBalance())    	
+        if(Manager.stockMap.get(name).getValue(date) * num + FEE> super.getBalance())    	
         	return "No enough money!";
         
         else {	
@@ -71,10 +75,25 @@ public class SecurityAccount extends Account {
     			return "No such Stock!";
     }
     
-    //period of bonds, amount of money to buy bond, bond id
-    public String buyBond(int period, double money, String id, String buyDate) {
+    //period of bonds, bond id
+    	public String buyBond(int period, String id, String buyDate) {
+    	//get the amount of money corresponding to period
+    		double money = 0;
+    	
+	    	switch(period){
+	        case 7 :
+	        	money = 1369.23;
+	           break; 
+	        case 30 :
+	        	money = 2862.74;
+	           break; 
+	        case 90 :
+	        	money = 3362.08;
+	            break; 
+    	}	
+    	
     	//check if enough money for buying the bond
-        if(money > super.getBalance())    	
+        if(money + FEE > super.getBalance())    	
         	return "No enough money!";
         
         else {
@@ -95,20 +114,31 @@ public class SecurityAccount extends Account {
         }      	
     }
 
-    public String sellBond(String id) {
+    public String sellBond(String id, String date) {
     	//find the one has the passed id
     	for(Bond bond : Manager.bonds) {
     		if(bond.getID().equals(id) && ownedBonds.containsKey(bond)) {	
-    			
-    			//deposit the money of that bond into the account
+    			//check if the customer sells the bond before the period
+    			if(Tools.getDateDifference(bond.getBuyDate(), date) >= bond.getPeriod()) {
+    			//deposit the money of that bond and the interest into the account
     			super.deposit((1+Manager.bondMap.get(bond.getPeriod())) * ownedBonds.get(bond));
     			super.withDraw(FEE);
     			
     			//then delete the bond from the map
     			ownedBonds.remove(bond);
+    			}
+    			// sell bond before the date of the bond
+    			else {
+    				//deposit the money of that bond into the account
+        			super.deposit(1 * ownedBonds.get(bond));
+        			super.withDraw(FEE);
+        			
+        			//then delete the bond from the map
+        			ownedBonds.remove(bond);
+        			}
     			
     			return "Success!";
-    		}
+			}
     	}
     	
     	return "Bond not found!";
@@ -120,6 +150,15 @@ public class SecurityAccount extends Account {
     
     public Map<Stock, Integer> getOwnedStocks(){
     	return ownedStocks;
+    }
+    
+    public ArrayList<String> getStocks(String date){
+    	ArrayList<String> arr = new ArrayList<String>();
+    	arr.add("Ticker"+"  "+"Price");
+    	
+    	for(Stock stock : Manager.stocks)
+    		arr.add(stock.getCompany().getTicker() + "  " + Manager.stockMap.get(date).getValue(date));
+    	return arr;
     }
     
     public Map<Bond, Double> getOwnedBonds(){

@@ -39,9 +39,21 @@ public class main {
 //		
 //		System.out.println(customer.getSecurityAccount().sellBond("ASD123"));
 //		
-//		System.out.println(customer.getSecurityAccount().toString());
+		System.out.println(customer.getSecurityAccount().toString());
 		
-//      customer.getSecurityAccount().buyBond(7, 100, "LASD123");
+//	    customer.getSecurityAccount().buyBond(7, "LASD","20180705");
+	    
+	    System.out.println(customer.getSecurityAccount().buyBond(30, "LASD123","20180905"));
+	    
+	    System.out.println(customer.getSecurityAccount().getOwnedBonds().keySet());
+	    
+		System.out.println(customer.getSecurityAccount().toString());
+		
+		System.out.println(customer.getSecurityAccount().sellBond("LASD123","20181028"));
+		
+		System.out.println(customer.getSecurityAccount().getOwnedBonds().keySet());
+		
+		System.out.println(customer.getSecurityAccount().toString());
 	}
 
 }

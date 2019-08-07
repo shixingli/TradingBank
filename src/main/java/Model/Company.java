@@ -14,6 +14,10 @@ public class Company {
     	return name;
     }
     
+    public String getTicker() {
+    	return ticker;
+    }
+    
     public String toString() {
     	return "Company name " + name + "\nticker " + ticker;
     }

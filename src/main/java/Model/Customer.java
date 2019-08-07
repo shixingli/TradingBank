@@ -1,6 +1,8 @@
 package Model;
 
-public class Customer extends Trader{
+import java.io.*;
+
+public class Customer extends Trader implements java.io.Serializable {
 
     private CheckingAccount checkingAccount;
     private SavingAccount savingAccount;

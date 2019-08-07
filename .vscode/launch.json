@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Customer",
+            "request": "launch",
+            "mainClass": "Model.Customer"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Transaction",
+            "request": "launch",
+            "mainClass": "Model.Transaction",
+            "console": "integratedTerminal"
+        }
+    ]
+}

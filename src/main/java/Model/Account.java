@@ -1,7 +1,12 @@
 package Model;
 
-public abstract class Account {
+import java.io.*;
+
+public abstract class Account implements java.io.Serializable {
     private double balance;
+    private final int CHECKING = 0;
+    private final int SAVING = 1;
+    private final int SECURITY = 2;
 	
     public double getBalance() {
     	return balance;
@@ -9,9 +14,9 @@ public abstract class Account {
     
 	public Account(double balance) {
 		this.balance = balance;
-	}
-
-    public String deposit(double num) {
+    }
+    
+    public boolean deposit(double num) {
         this.balance += num;
         	return "Success!";
     }

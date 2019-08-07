@@ -19,7 +19,8 @@ public class Tools {
     public static final String ERROR_NOT_CORRECT_RANGE = "Invalid number";
     public static final String ERROR_EMPTY_STRING = "Empty id is not accepted";
     public static final String ERROR_DUPLICATE_STRING = "Id you enter is already used by other customer";
-    public static final String[] ACCOUNT_TYPE = {"Checking Account", "Saving Acoount", "Security Account"};
+    public static final String[] ACCOUNT_TYPE = {"Checking Account", "Saving Account", "Security Account"};
+    public static final String[] Bond_TYPE = {"7 days Bond", "1 Month Bond", "3 Months Bond"};
 
 
     /************************************************************************
@@ -44,7 +45,7 @@ public class Tools {
         return true;
     }
 
-    public static long getDateDifference(String date1, String date2){
+    public static int getDateDifference(String date1, String date2){
 
         try {
             // ?????????????????????
@@ -54,20 +55,11 @@ public class Tools {
             Date endDate = simpleDateFormat.parse(date2);
             System.out.println(startDate.getTime());
             System.out.println(endDate.getTime());
-            return (TimeUnit.DAYS.convert(Math.abs(startDate.getTime() - endDate.getTime()), TimeUnit.MILLISECONDS));
+            return (int)(TimeUnit.DAYS.convert(Math.abs(startDate.getTime() - endDate.getTime()), TimeUnit.MILLISECONDS));
         } catch (Exception e) {
             return -1;
         }
     }
-
-    public static void main(String[] args) {
-        System.out.println(getDateDifference("20181120", "20190806"));
-    }
-
-//    public static String dateFormalize() {
-//
-//
-//    }
 
     public static String generateUniqueId() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
@@ -79,6 +71,7 @@ public class Tools {
         try {
             value = Double.parseDouble(input);
         } catch (Exception e) {
+            System.out.println(input);
             confirmDialog("Error", ERROR_NOT_NUMBER, frame);
             return false;
         }
@@ -88,6 +81,38 @@ public class Tools {
         }
 
         return true;
+    }
+
+    public static boolean checkValidInteger(JFrame frame, String input) {
+        double value;
+        try {
+            value = Integer.parseInt(input);
+        } catch (Exception e) {
+            System.out.println(input);
+            confirmDialog("Error", ERROR_NOT_NUMBER, frame);
+            return false;
+        }
+        if (value < 0) {
+            confirmDialog("Error", ERROR_NOT_CORRECT_RANGE, frame);
+            return false;
+        }
+
+        return true;
+    }
+
+    public static String getFirstElementBeforeSpace(String input) {
+        return input.trim().split(" ")[0];
+    }
+
+    public static <T extends JFrame> void showWindow(T frame) {
+        int windowWidth = frame.getWidth();
+        int windowHeight = frame.getHeight();
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+        frame.setLocation(screenWidth/2-windowWidth/2, screenHeight/2-windowHeight/2);
+        frame.setVisible(true);
     }
 
 
@@ -107,14 +132,5 @@ public class Tools {
         JOptionPane.showConfirmDialog(parent, content, title, JOptionPane.DEFAULT_OPTION);
     }
 
-    private static <T extends JFrame> void showWindow(T frame) {
-        int windowWidth = frame.getWidth();
-        int windowHeight = frame.getHeight();
-        Toolkit kit = Toolkit.getDefaultToolkit();
-        Dimension screenSize = kit.getScreenSize();
-        int screenWidth = screenSize.width;
-        int screenHeight = screenSize.height;
-        frame.setLocation(screenWidth/2-windowWidth/2, screenHeight/2-windowHeight/2);
-        frame.setVisible(true);
-    }
+
 }

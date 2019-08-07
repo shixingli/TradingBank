@@ -197,5 +197,11 @@ public class CustomerStockFrame extends JFrame{
 		return customer_brought_stock_list;
 	}
 
+	public JButton getCustomer_dynamic_botton() {
+		return Customer_dynamic_botton;
+	}
 
+	public JList getMarket_stock_lst() {
+		return market_stock_lst;
+	}
 }

@@ -30,6 +30,8 @@ public class TradingSystem {
 
         // customerStockFrame
         customerStockFrame = new CustomerStockFrame();
+        customerStockFrame.getCustomer_brought_stock_list().addListSelectionListener(e -> CustomerStockController.setSell(customerStockFrame));
+        customerStockFrame.getMarket_stock_lst().addListSelectionListener(e -> CustomerStockController.setBuy(customerStockFrame));
     }
 
     public CustomerMainFrame getCustomerMainFrame() {

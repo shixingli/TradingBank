@@ -32,17 +32,17 @@ public class CustomerStockController {
 
     public static void flushCustomerStocks(CustomerStockFrame customerStockFrame, Customer customer) {
         List<String> selfInfo = new ArrayList();
-        for (Stock stock : customer.getSecurityAccount().getBalance() {
+        for (Stock stock : customer.getSecurityAccount().getBalance()) {
             marketInfo.add(stock.getCompany().getName() + " " + stock.getValue(currentDate));
         }
         customerStockFrame.getCustomer_brought_stock_list().setModel(new DefaultComboBoxModel(marketInfo.toArray()));
     }
 
-    public static void setBuy(CustomerStockFrame customerStockFrame, Customer customer) {
+    public static void setBuy(CustomerStockFrame customerStockFrame) {
         customerStockFrame.getCustomer_sell_botton().setText("Buy");
     }
 
-    public static void setSell(CustomerStockFrame customerStockFrame, Customer customer) {
+    public static void setSell(CustomerStockFrame customerStockFrame) {
         customerStockFrame.getCustomer_sell_botton().setText("Sell");
     }
 

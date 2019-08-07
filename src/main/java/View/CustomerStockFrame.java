@@ -23,17 +23,16 @@ import javax.swing.SwingConstants;
 public class CustomerStockFrame extends JFrame{
 	
 	private String[] stock = {"AAPL193.34","GOOG","YHOO","NASDAQ","NKE"};
-	private JTextField txtNumberOfShare_buy;
 	private JTextField txtNumberOfShare_sell;
 	private JLabel lblStocks;
-	private JButton Customer_buy_botton, Customer_sell_botton;
+	private JButton Customer_dynamic_botton;
 	
 
 
 
 	private JLabel lblNumberOfShare;
-	private JPanel sell_panel,buy_panel;
-	private JList customer_brought_stock_list;
+	private JPanel sell_panel;
+	private JList customer_brought_stock_list,market_stock_lst;
 	
 	public CustomerStockFrame()  {
 		getContentPane().setBackground(Color.WHITE);
@@ -62,12 +61,13 @@ public class CustomerStockFrame extends JFrame{
 		panel.add(lblStocks);
 		
 		DefaultListModel model = new DefaultListModel();
-	    JList list = new JList(model);
-	    list.setForeground(Color.WHITE);
-	    list.setBackground(new Color(0, 104, 189));
-	    list.setFont(new Font("Apple SD Gothic Neo", Font.PLAIN, 25));
-		list.setBounds(841, 143, 484, 551);
-		getContentPane().add(list);
+	    market_stock_lst = new JList(model);
+	    market_stock_lst.setVisibleRowCount(10);
+	    market_stock_lst.setForeground(Color.WHITE);
+	    market_stock_lst.setBackground(new Color(0, 104, 189));
+	    market_stock_lst.setFont(new Font("Apple SD Gothic Neo", Font.PLAIN, 25));
+		market_stock_lst.setBounds(841, 143, 484, 551);
+		getContentPane().add(market_stock_lst);
 		
 		customer_brought_stock_list = new JList();
 		customer_brought_stock_list.setBackground(new Color(0,104,189));
@@ -76,7 +76,7 @@ public class CustomerStockFrame extends JFrame{
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(502, 361, 220, 133);
+		panel_1.setBounds(550, 345, 220, 133);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -90,29 +90,14 @@ public class CustomerStockFrame extends JFrame{
 		sell_panel.setBackground(Color.WHITE);
 		sell_panel.setLayout(null);
 		
-		Customer_sell_botton = new JButton("Sell");
-		Customer_sell_botton.setBounds(37, 43, 57, 29);
-		sell_panel.add(Customer_sell_botton);
+		Customer_dynamic_botton = new JButton("Dynamic");
+		Customer_dynamic_botton.setBounds(37, 43, 67, 29);
+		sell_panel.add(Customer_dynamic_botton);
 		
 		txtNumberOfShare_sell = new JTextField();
-		txtNumberOfShare_sell.setBounds(37, 6, 57, 26);
+		txtNumberOfShare_sell.setBounds(37, 6, 67, 26);
 		sell_panel.add(txtNumberOfShare_sell);
 		txtNumberOfShare_sell.setColumns(10);
-		
-		buy_panel = new JPanel();
-		buy_panel.setBounds(0, 0, 154, 83);
-		sell_panel.add(buy_panel);
-		buy_panel.setBackground(Color.WHITE);
-		buy_panel.setLayout(null);
-		
-		txtNumberOfShare_buy = new JTextField();
-		txtNumberOfShare_buy.setBounds(38, 17, 57, 26);
-		buy_panel.add(txtNumberOfShare_buy);
-		txtNumberOfShare_buy.setColumns(10);
-		
-		Customer_buy_botton = new JButton("Buy");
-		Customer_buy_botton.setBounds(38, 48, 57, 29);
-		buy_panel.add(Customer_buy_botton);
 		
 		
 //        File text = new File("/Users/jasonlee/Desktop/Stock.txt");
@@ -140,12 +125,12 @@ public class CustomerStockFrame extends JFrame{
 	}
 
 
-	/**
-	 * @return the txtNumberOfShare_buy
-	 */
-	public JTextField getTxtNumberOfShare_buy() {
-		return txtNumberOfShare_buy;
-	}
+//	/**
+//	 * @return the txtNumberOfShare_buy
+//	 */
+//	public JTextField getTxtNumberOfShare_buy() {
+//		return txtNumberOfShare_buy;
+//	}
 
 
 	/**
@@ -164,19 +149,19 @@ public class CustomerStockFrame extends JFrame{
 	}
 
 
-	/**
-	 * @return the customer_buy_botton
-	 */
-	public JButton getCustomer_buy_botton() {
-		return Customer_buy_botton;
-	}
+//	/**
+//	 * @return the customer_buy_botton
+//	 */
+//	public JButton getCustomer_buy_botton() {
+//		return Customer_buy_botton;
+//	}
 
 
 	/**
 	 * @return the customer_sell_botton
 	 */
 	public JButton getCustomer_sell_botton() {
-		return Customer_sell_botton;
+		return Customer_dynamic_botton;
 	}
 
 
@@ -199,9 +184,9 @@ public class CustomerStockFrame extends JFrame{
 	/**
 	 * @return the buy_panel
 	 */
-	public JPanel getBuy_panel() {
-		return buy_panel;
-	}
+//	public JPanel getBuy_panel() {
+//		return buy_panel;
+//	}
 
 
 	/**
@@ -211,5 +196,11 @@ public class CustomerStockFrame extends JFrame{
 		return customer_brought_stock_list;
 	}
 
+	public JButton getCustomer_dynamic_botton() {
+		return Customer_dynamic_botton;
+	}
 
+	public JList getMarket_stock_lst() {
+		return market_stock_lst;
+	}
 }

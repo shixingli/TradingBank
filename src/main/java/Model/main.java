@@ -54,6 +54,8 @@ public class main {
 		System.out.println(customer.getSecurityAccount().getOwnedBonds().keySet());
 		
 		System.out.println(customer.getSecurityAccount().toString());
+//      customer.getSecurityAccount().buyBond(7, 100, "LASD123");
+		customer.getCheckingAccount().deposit(1);
 	}
 
 }

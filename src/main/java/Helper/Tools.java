@@ -45,7 +45,7 @@ public class Tools {
         return true;
     }
 
-    public static long getDateDifference(String date1, String date2){
+    public static int getDateDifference(String date1, String date2){
 
         try {
             // ?????????????????????
@@ -55,7 +55,7 @@ public class Tools {
             Date endDate = simpleDateFormat.parse(date2);
             System.out.println(startDate.getTime());
             System.out.println(endDate.getTime());
-            return (TimeUnit.DAYS.convert(Math.abs(startDate.getTime() - endDate.getTime()), TimeUnit.MILLISECONDS));
+            return (int)(TimeUnit.DAYS.convert(Math.abs(startDate.getTime() - endDate.getTime()), TimeUnit.MILLISECONDS));
         } catch (Exception e) {
             return -1;
         }
@@ -70,6 +70,23 @@ public class Tools {
         double value;
         try {
             value = Double.parseDouble(input);
+        } catch (Exception e) {
+            System.out.println(input);
+            confirmDialog("Error", ERROR_NOT_NUMBER, frame);
+            return false;
+        }
+        if (value < 0) {
+            confirmDialog("Error", ERROR_NOT_CORRECT_RANGE, frame);
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean checkValidInteger(JFrame frame, String input) {
+        double value;
+        try {
+            value = Integer.parseInt(input);
         } catch (Exception e) {
             System.out.println(input);
             confirmDialog("Error", ERROR_NOT_NUMBER, frame);

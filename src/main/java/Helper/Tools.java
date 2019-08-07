@@ -45,14 +45,14 @@ public class Tools {
         return true;
     }
 
-    public static int getDateDifference(String date1, String date2){
+    public static int getDateDifference(String date1, String date2) {
 
         try {
             // get how many days between date 1 and date 2
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
             Date startDate = simpleDateFormat.parse(date1);
             Date endDate = simpleDateFormat.parse(date2);
-            return (int)(TimeUnit.DAYS.convert(Math.abs(startDate.getTime() - endDate.getTime()), TimeUnit.MILLISECONDS));
+            return (int) (TimeUnit.DAYS.convert(Math.abs(startDate.getTime() - endDate.getTime()), TimeUnit.MILLISECONDS));
         } catch (Exception e) {
             return -1;
         }
@@ -108,7 +108,7 @@ public class Tools {
         Dimension screenSize = kit.getScreenSize();
         int screenWidth = screenSize.width;
         int screenHeight = screenSize.height;
-        frame.setLocation(screenWidth/2-windowWidth/2, screenHeight/2-windowHeight/2);
+        frame.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);
         frame.setVisible(true);
     }
 
@@ -129,5 +129,10 @@ public class Tools {
         JOptionPane.showConfirmDialog(parent, content, title, JOptionPane.DEFAULT_OPTION);
     }
 
+    public static void main(String[] args) {
+        System.out.println(generateUniqueId());
+    }
 
 }
+
+

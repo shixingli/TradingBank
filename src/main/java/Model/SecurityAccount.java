@@ -48,7 +48,27 @@ public class SecurityAccount extends Account {
     
     //name of stock, number of shares to buy, sell date
     public String sellStock(String name, int num, String date) {
-        	return "success!";
+    		//find the stock with the name
+    		if(Manager.stockMap.containsKey(name) && ownedStocks.containsValue(Manager.stockMap.get(name))) {
+    			Stock stock = Manager.stockMap.get(name);
+    			
+    			//calculate the unrealizedProfit
+    			unrealizedProfit = ownedStocks.get(stock) * stock.getValue(date);
+    			
+    			//calculate the realizedProfit
+    			realizedProfit = num * 123;
+    			
+    			//deposit the money of that stock into the account
+    			super.deposit(realizedProfit);
+    			super.withDraw(FEE);
+    			
+    			//then delete the stock from the map
+    			ownedStocks.remove(stock);
+    			
+    			return "Success!";
+    		}
+    		else 
+    			return "No such Stock!";
     }
     
     //period of bonds, amount of money to buy bond, bond id
@@ -95,7 +115,7 @@ public class SecurityAccount extends Account {
     }
     
     public String toString() {
-    	return "Security account 1234 balance: " + super.getBalance() + " unrealizedProfit: " + unrealizedProfit +" realizedProfit: " + realizedProfit;
+    	return "Security account 1234 \nbalance: " + super.getBalance() + "\nunrealizedProfit: " + unrealizedProfit +"\nrealizedProfit: " + realizedProfit;
     }
     
     public Map<Stock, Integer> getOwnedStocks(){

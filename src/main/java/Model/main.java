@@ -14,6 +14,12 @@ public class main {
 		manager.addStock(stock);
 		Stock sa = new Stock(c);
 		manager.addStock(sa);
+		
+		customer.getCheckingAccount().deposit(100);
+		customer.getCheckingAccount().transferTo(customer.getSavingAccount(), 23);
+		System.out.println(customer.getCheckingAccount().toString());
+		System.out.println(customer.getSavingAccount().toString());
+		System.out.println(customer.getSecurityAccount().toString());
 //		manager.updateStock(company.getName(), "20180804", 123.3);
 		
 //		for(Stock s : Manager.stocks)

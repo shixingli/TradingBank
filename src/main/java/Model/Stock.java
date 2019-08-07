@@ -33,6 +33,10 @@ public class Stock {
     		priceInfo.put(date, value);
     }
     
+    public Map getPriceInfo() {
+    	return priceInfo;
+    }
+    
     public String toString() {
     	return company.toString();
     }

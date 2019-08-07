@@ -19,7 +19,7 @@ public class Tools {
     public static final String ERROR_NOT_CORRECT_RANGE = "Invalid number";
     public static final String ERROR_EMPTY_STRING = "Empty id is not accepted";
     public static final String ERROR_DUPLICATE_STRING = "Id you enter is already used by other customer";
-    public static final String[] ACCOUNT_TYPE = {"Checking Account", "Saving Acoount", "Security Account"};
+    public static final String[] ACCOUNT_TYPE = {"Checking Account", "Saving Account", "Security Account"};
 
 
     /************************************************************************
@@ -60,15 +60,6 @@ public class Tools {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(getDateDifference("20181120", "20190806"));
-    }
-
-//    public static String dateFormalize() {
-//
-//
-//    }
-
     public static String generateUniqueId() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
         return simpleDateFormat.format(new Date());
@@ -79,6 +70,7 @@ public class Tools {
         try {
             value = Double.parseDouble(input);
         } catch (Exception e) {
+            System.out.println(input);
             confirmDialog("Error", ERROR_NOT_NUMBER, frame);
             return false;
         }
@@ -88,6 +80,17 @@ public class Tools {
         }
 
         return true;
+    }
+
+    public static <T extends JFrame> void showWindow(T frame) {
+        int windowWidth = frame.getWidth();
+        int windowHeight = frame.getHeight();
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+        frame.setLocation(screenWidth/2-windowWidth/2, screenHeight/2-windowHeight/2);
+        frame.setVisible(true);
     }
 
 
@@ -107,14 +110,5 @@ public class Tools {
         JOptionPane.showConfirmDialog(parent, content, title, JOptionPane.DEFAULT_OPTION);
     }
 
-    private static <T extends JFrame> void showWindow(T frame) {
-        int windowWidth = frame.getWidth();
-        int windowHeight = frame.getHeight();
-        Toolkit kit = Toolkit.getDefaultToolkit();
-        Dimension screenSize = kit.getScreenSize();
-        int screenWidth = screenSize.width;
-        int screenHeight = screenSize.height;
-        frame.setLocation(screenWidth/2-windowWidth/2, screenHeight/2-windowHeight/2);
-        frame.setVisible(true);
-    }
+
 }

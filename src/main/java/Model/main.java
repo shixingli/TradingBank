@@ -16,7 +16,7 @@ public class main {
 		System.out.println(stock.toString());
 		System.out.println(customer.toString());
 		
-		customer.getCheckingAccount().deposit();
+		customer.getCheckingAccount().deposit(1);
 	}
 
 }

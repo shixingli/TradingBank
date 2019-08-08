@@ -180,7 +180,7 @@ public class Manager extends Trader{
     	
     	if(stockMap.containsKey(ticker)) {
     		stockMap.get(ticker).updateStock(date, newValue);
-    		
+
     		return "Success!";
     	}
     	return "No such stock!";
@@ -198,7 +198,6 @@ public class Manager extends Trader{
     }
     
     public void addStock(Stock stock) {
-    	
     	stocks.add(stock);
     	stockMap.put(stock.getCompany().getTicker(), stock);
     }

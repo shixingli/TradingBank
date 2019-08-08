@@ -16,9 +16,9 @@ public abstract class Account implements java.io.Serializable {
 		this.balance = balance;
     }
     
-    public boolean deposit(double num) {
+    public String deposit(double num) {
         this.balance += num;
-        	return "Success!";
+        return "Success!";
     }
 
     public String withDraw(double num) {

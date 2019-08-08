@@ -4,6 +4,7 @@ import Helper.Tools;
 import Model.Customer;
 import View.CustomerMainFrame;
 import View.Mainframe;
+import View.ManagerFrame;
 
 public class LoginController {
 
@@ -12,9 +13,9 @@ public class LoginController {
         mainframe.getPasswordField_dynamic().setText("");
     }
 
-    public static void loginAction(Mainframe mainframe, CustomerMainFrame customerMainFrame, Customer customer) {
+    public static void loginAction(Mainframe mainframe, CustomerMainFrame customerMainFrame, Customer customer, String currentDate, ManagerFrame managerFrame) {
         if (mainframe.isCustomer()) customerLogin(mainframe, customerMainFrame, customer);
-        else managerLogin(mainframe);
+        else managerLogin(mainframe, managerFrame, currentDate);
     }
 
     public static void back(Mainframe mainframe) {
@@ -47,11 +48,10 @@ public class LoginController {
     /****************************************************************************
      *                        manager login methods
      ***************************************************************************/
-    public static void managerLogin(Mainframe mainframe) {
+    public static void managerLogin(Mainframe mainframe, ManagerFrame managerFrame, String currentDate) {
         if (mainframe.getUsername_txt_dynamic().getText().length() != 0 && mainframe.getPasswordField_dynamic().getText().length() != 0){
-//            mainframe.setVisible(false);
-//            customer = temp;
-//            CustomerMainController.showView(customerMainFrame, customer);
+            mainframe.setVisible(false);
+            ManagerController.showWindow(managerFrame, currentDate);
         } else {
             Tools.confirmDialog("Result", "Empty Input is not allowed", mainframe);
         }

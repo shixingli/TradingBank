@@ -121,13 +121,13 @@ public class SecurityAccount extends Account {
     	
 	    	switch(period){
 	        case 7 :
-	        	money = 1369.23;
+	        	money = 1000;
 	           break; 
 	        case 30 :
-	        	money = 2862.74;
+	        	money = 1500;
 	           break; 
 	        case 90 :
-	        	money = 3362.08;
+	        	money = 3000;
 	            break; 	
     	}	
     	

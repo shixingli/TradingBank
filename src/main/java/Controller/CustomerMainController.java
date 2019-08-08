@@ -6,6 +6,7 @@ import Model.Customer;
 import View.CustomerBondFrame;
 import View.CustomerMainFrame;
 import View.CustomerStockFrame;
+import View.Mainframe;
 
 import javax.swing.*;
 
@@ -89,6 +90,11 @@ public class CustomerMainController {
     public static void openStock(CustomerMainFrame customerMainFrame, CustomerStockFrame customerStockFrame, Customer customer, String currentDate) {
         customerMainFrame.setVisible(false);
         CustomerStockController.showView(customerStockFrame, customer, currentDate);
+    }
+
+    public static void back(CustomerMainFrame customerMainFrame, Mainframe mainframe) {
+        customerMainFrame.setVisible(false);
+        MainController.showMain(mainframe);
     }
 
     /****************************************************************************

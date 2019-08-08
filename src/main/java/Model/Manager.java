@@ -46,6 +46,7 @@ public class Manager extends Trader{
 	        try {
 	            reader = new BufferedReader(new FileReader(file));
 	            String tempString = null;
+
 	            // read by one line
 	            while ((tempString = reader.readLine()) != null) {
 	                
@@ -58,8 +59,9 @@ public class Manager extends Trader{
 	                String password = strings[3];
 	                
 	                Customer customer = new Customer(firstName, lastName, id, password);
-	                
+
 	                Manager.customerList.add(customer);
+
 	                Manager.customerStringSet.add(id);
 	            }
 	            
@@ -86,7 +88,7 @@ public class Manager extends Trader{
 			
 			for(Customer customer : Manager.customerList) {
 				String s = customer.getFirstName()+";"+customer.getLastName()+";"+customer.getID()+";"+customer.getPassword();
-				bw.write(s.toString()+ "\r\n");	
+				bw.write(s.toString()+ "\r\n");
 			}
 		
 			bw.close();
@@ -216,9 +218,9 @@ public class Manager extends Trader{
     	bondMap.put(bond.getPeriod(), bond.getValue());
     }
     
-    public void addCustomer(Customer customer) {
-    	customerList.add(customer);
-    }
+//    public void addCustomer(Customer customer) {
+//    	customerList.add(customer);
+//    }
     
     public Stock getAStock(String ticker) {
     	return stockMap.get(ticker);

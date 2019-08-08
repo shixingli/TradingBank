@@ -23,14 +23,17 @@ public class CustomerStockController {
         flushMarketStocks(customerStockFrame, currentDate, customer);
         flushCustomerStocks(customerStockFrame, customer);
         customerStockFrame.getTxtNumberOfShare_sell().setText("");
+
     }
 
     public static void flushMarketStocks(CustomerStockFrame customerStockFrame, String currentDate, Customer customer) {
         customerStockFrame.getMarket_stock_lst().setModel(new DefaultComboBoxModel(Manager.getStocks(currentDate).toArray()));
+        customerStockFrame.getMarket_stock_lst().clearSelection();
     }
 
     public static void flushCustomerStocks(CustomerStockFrame customerStockFrame, Customer customer) {
         customerStockFrame.getCustomer_brought_stock_list().setModel(new DefaultComboBoxModel(customer.getSecurityAccount().showOwnedStocks().toArray()));
+        customerStockFrame.getCustomer_brought_stock_list().clearSelection();
     }
 
     public static void setBuy(CustomerStockFrame customerStockFrame) {

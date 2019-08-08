@@ -21,7 +21,7 @@ public class CustomerMainFrame extends JFrame{
 	private JPanel panel;
 	private JTextArea account_info;
 	private JComboBox comboBox,bottom_combobox;
-	private JButton btnStock,btnMybonds,OKButton;
+	private JButton btnStock,btnMybonds,OKButton, back_botton;
 	private JPanel bottom_panel,top_panel,bottom_inner_panel;
 	private JRadioButton depositRadioButton,withdrawRadioButton,transferRadioButton;
 	private JTextField amount_money_txtfiled;
@@ -55,6 +55,10 @@ public class CustomerMainFrame extends JFrame{
 		lblStocks.setForeground(Color.WHITE);
 		lblStocks.setFont(new Font("Apple SD Gothic Neo", Font.PLAIN, 30));
 		panel.add(lblStocks);
+
+		back_botton = new JButton("X");
+		back_botton.setBounds(1308, 21, 33, 29);
+		panel.add(back_botton);
 		
 		top_panel = new JPanel();
 		top_panel.setBounds(160, 89, 1012, 278);
@@ -292,5 +296,12 @@ public class CustomerMainFrame extends JFrame{
 	 */
 	public ButtonGroup getGroup() {
 		return group;
+	}
+
+	/**
+	 * @return the back_botton
+	 */
+	public JButton getBack_botton() {
+		return back_botton;
 	}
 }

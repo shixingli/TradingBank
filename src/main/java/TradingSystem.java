@@ -5,11 +5,7 @@ import Model.Company;
 import Model.Customer;
 import Model.Manager;
 import Model.Stock;
-import View.CustomerBondFrame;
-import View.CustomerMainFrame;
-
-import View.CustomerStockFrame;
-import View.Mainframe;
+import View.*;
 
 public class TradingSystem {
 
@@ -17,6 +13,7 @@ public class TradingSystem {
     private CustomerStockFrame customerStockFrame;
     private CustomerBondFrame customerBondFrame;
     private Mainframe mainframe;
+    private ManagerFrame managerFrame;
 
 
     // User
@@ -29,6 +26,7 @@ public class TradingSystem {
     public TradingSystem() {
         frameInit();
         dataInit();
+        initFile();
 
     }
 
@@ -45,7 +43,7 @@ public class TradingSystem {
         customerMainFrame.getTransferRadioButton().addActionListener(e -> CustomerMainController.showComboBox(customerMainFrame));
         customerMainFrame.getBtnMybonds().addActionListener(e -> CustomerMainController.openBond(customerMainFrame, customerBondFrame, customer));
         customerMainFrame.getBtnStock().addActionListener(e -> CustomerMainController.openStock(customerMainFrame, customerStockFrame, customer, currentDate));
-
+        customerMainFrame.getBack_botton().addActionListener(e -> CustomerMainController.back(customerMainFrame, mainframe));
 
         // customerStockFrame
         customerStockFrame = new CustomerStockFrame();
@@ -71,11 +69,19 @@ public class TradingSystem {
         mainframe.getBtnCreate_init().addActionListener(e -> MainController.createCustomer(mainframe));
         mainframe.getBtnManagerLogin().addActionListener(e -> MainController.managerLogin(mainframe));
         mainframe.getCustomer_login_btn().addActionListener(e -> MainController.customerLogin(mainframe));
-        mainframe.getLogin_btn().addActionListener(e -> LoginController.loginAction(mainframe, customerMainFrame,customer));
+        mainframe.getLogin_btn().addActionListener(e -> LoginController.loginAction(mainframe, customerMainFrame, customer, currentDate, managerFrame));
         mainframe.getCreate_acc_btn().addActionListener(e -> MainController.createCustomer(mainframe));
         mainframe.getBtnCreate_init().addActionListener(e -> CreateController.createAccount(mainframe, customer));
         mainframe.getBack_create_panel().addActionListener(e -> CreateController.back(mainframe));
         mainframe.getBack_btn().addActionListener(e -> LoginController.back(mainframe));
+
+        //ManagerFrame
+        managerFrame = new ManagerFrame();
+        managerFrame.getBtnUpdate().addActionListener(e -> ManagerController.updateStock(managerFrame, currentDate));
+        managerFrame.getInfo_Generate().addActionListener(e -> ManagerController.generateReport());
+        managerFrame.getStock_radio_btn().addActionListener(e -> ManagerController.showStock(managerFrame));
+        managerFrame.getBond_radio_btn().addActionListener(e -> ManagerController.showBond(managerFrame));
+        managerFrame.getBack_botton().addActionListener(e -> ManagerController.back(managerFrame, mainframe));
     }
 
     public void dataInit() {
@@ -90,7 +96,7 @@ public class TradingSystem {
         Customer c4 = new Customer("ghj", "uiyu", "nfgnf567", "000");
         Customer c5 = new Customer("iuhkbk", "iopiop", "gfhfg777", "111");
 
-        manager.addCustomer(customer);
+        //manager.addCustomer(customer);
 
         Company company = new Company("Apple", "LASD123");
         Company c = new Company("Google", "HJAK567");
@@ -106,6 +112,10 @@ public class TradingSystem {
 //        System.out.println(customer.getSecurityAccount().buyStock("HJAK567",7,currentDate));
 //
 //        System.out.println(customer.getSecurityAccount().buyStock("HJAK567",100,currentDate));
+    }
+
+    public void initFile() {
+        Manager.readCustomerList();
     }
 
     public CustomerMainFrame getCustomerMainFrame() {
@@ -143,5 +153,9 @@ public class TradingSystem {
 
     public Customer getCustomer() {
         return customer;
+    }
+
+    public ManagerFrame getManagerFrame() {
+        return managerFrame;
     }
 }

@@ -19,6 +19,7 @@ public class Tools {
 
     public static final String[] ACCOUNT_TYPE = {"Checking Account", "Saving Account", "Security Account"};
     public static final String[] Bond_TYPE = {"7 Days", "1 Month", "3 Months"};
+    public static final String[] Bond_Map = {"Type   Face Value", "7 Days:   1000", "1 Month:   1500", "3 Months:   3000"};
 
 
     /************************************************************************

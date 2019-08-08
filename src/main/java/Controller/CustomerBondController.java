@@ -193,13 +193,13 @@ public class CustomerBondController {
 
     public static void updateBondInfo(CustomerBondFrame customerBondFrame) {
         if (customerBondFrame.getBond_comboBox().getSelectedItem().equals("7 Days")) {
-            customerBondFrame.getFaceLable().setText("Face Value:   " + 1369.23);
+            customerBondFrame.getFaceLable().setText("Face Value:   " + 1000);
             customerBondFrame.getLblInterestRate().setText("Interest Rate:   " + Manager.bondMap.get(7));
         } else if (customerBondFrame.getBond_comboBox().getSelectedItem().equals("1 Month")) {
-            customerBondFrame.getFaceLable().setText("Face Value:   " + 2862.74);
+            customerBondFrame.getFaceLable().setText("Face Value:   " + 1500);
             customerBondFrame.getLblInterestRate().setText("Interest Rate:   " + Manager.bondMap.get(30));
         } else {
-            customerBondFrame.getFaceLable().setText("Face Value:   " + 3362.08);
+            customerBondFrame.getFaceLable().setText("Face Value:   " + 3000);
             customerBondFrame.getLblInterestRate().setText("Interest Rate:   " + Manager.bondMap.get(90));
         }
     }

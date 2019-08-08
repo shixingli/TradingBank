@@ -19,9 +19,10 @@ import java.awt.Font;
 import javax.swing.JPasswordField;
 
 public class Mainframe extends JFrame{
-//	private Image img = new ImageIcon(this.getClass().getResource("/blue.jpg")).getImage();
+	private Image img = new ImageIcon("../resources/blue.jpg").getImage();
+//	private Image hmm = new ImageIcon("blue.jpg").getImage();
 //	private Image icon = new ImageIcon(this.getClass().getResource("/Login.jpeg")).getImage();
-//	private Image soft = new ImageIcon(this.getClass().getResource("/soft.png")).getImage();
+	private Image soft = new ImageIcon("../resources/soft.png").getImage();
 //	private Image couple = new ImageIcon(this.getClass().getResource("couple.png")).getImage();
 //	private Image login = new ImageIcon(this.getClass().getResource("lock.png")).getImage();
 //	private Image bono = new ImageIcon(this.getClass().getResource("rect.png")).getImage();
@@ -101,6 +102,7 @@ public class Mainframe extends JFrame{
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(167, 21, 358, 246);
+		lblNewLabel_1.setIcon(new ImageIcon(soft));
 		main_panel.add(lblNewLabel_1);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		
@@ -174,7 +176,7 @@ public class Mainframe extends JFrame{
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(0, 0, 1366, 768);
 		getContentPane().add(lblNewLabel);
-//		lblNewLabel.setIcon(new ImageIcon(img));
+		lblNewLabel.setIcon(new ImageIcon(img));
 
 		main_exit = new JButton("X");
 		main_exit.setBounds(1333, 6, 27, 29);

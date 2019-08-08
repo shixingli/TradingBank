@@ -27,8 +27,8 @@ public class Mainframe extends JFrame{
 	private JButton customer_login_btn,btnManagerLogin,create_acc_btn,back_btn,login_btn,btnCreate_init;
 //	private Image bono = new ImageIcon(this.getClass().getResource("rect.png")).getImage();
 	
-	private JButton btnManagerLogin,create_acc_btn,back_btn,login_btn,btnCreate_init;
-	private JButton btnManagerLogin,register_btn,back_btn,login_btn,create_btn;
+//	private JButton btnManagerLogin,create_acc_btn,back_btn,login_btn,btnCreate_init;
+	private JButton register_btn,create_btn;
 	private JTextField username_txt_dynamic;
 	private JPasswordField passwordField_dynamic;
 	private JTextField create_name;
@@ -36,7 +36,7 @@ public class Mainframe extends JFrame{
 	private JTextField create_username;
 	private JLabel lblDynamicLogin;
 	private JPanel dynamic_login,create_acc_panel,main_panel,two_login_panel;
-	private JButton customer_login_btn;
+//	private JButton customer_login_btn;
 	private JButton back_create_panel;
 	private boolean isCustomer = false;
 	private JButton main_exit;

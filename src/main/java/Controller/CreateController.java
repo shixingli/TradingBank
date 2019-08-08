@@ -7,7 +7,7 @@ public class CreateController {
     public static void back (Mainframe mainframe) {
         mainframe.getCreate_acc_panel().setVisible(false);
         MainController.refreshAll(mainframe);
-        mainframe.getMain_panel().setVisible(true);
+        mainframe.getTwo_login_panel().setVisible(true);
     }
 
     public static void refreshInfo (Mainframe mainframe) {

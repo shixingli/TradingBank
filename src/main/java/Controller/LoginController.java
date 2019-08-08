@@ -20,7 +20,7 @@ public class LoginController {
     public static void back(Mainframe mainframe) {
         mainframe.getDynamic_login().setVisible(false);
         MainController.refreshAll(mainframe);
-        mainframe.getMain_panel().setVisible(true);
+        mainframe.getTwo_login_panel().setVisible(true);
     }
 
     /****************************************************************************

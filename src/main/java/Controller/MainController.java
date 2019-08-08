@@ -56,7 +56,7 @@ public class MainController {
 
     public static void createCustomer(Mainframe mainframe) {
         mainframe.setCustomer(true);
-        mainframe.getMain_panel().setVisible(false);
+        mainframe.getTwo_login_panel().setVisible(false);
         mainframe.getCreate_acc_panel().setVisible(true);
     }
 

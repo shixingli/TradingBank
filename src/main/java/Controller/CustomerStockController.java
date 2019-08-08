@@ -18,21 +18,18 @@ public class CustomerStockController {
     }
 
     public static void refreshView(CustomerStockFrame customerStockFrame, Customer customer, String currentDate) {
+        customerStockFrame.getCustomer_sell_botton().setText("XX");
         flushMarketStocks(customerStockFrame, currentDate, customer);
         flushCustomerStocks(customerStockFrame, customer);
         customerStockFrame.getTxtNumberOfShare_sell().setText("");
     }
 
     public static void flushMarketStocks(CustomerStockFrame customerStockFrame, String currentDate, Customer customer) {
-        customerStockFrame.getCustomer_brought_stock_list().setModel(new DefaultComboBoxModel(Manager.getStocks(currentDate).toArray()));
+        customerStockFrame.getMarket_stock_lst().setModel(new DefaultComboBoxModel(Manager.getStocks(currentDate).toArray()));
     }
 
     public static void flushCustomerStocks(CustomerStockFrame customerStockFrame, Customer customer) {
-//        List<String> selfInfo = new ArrayList();
-//        for (Stock stock : customer.getSecurityAccount().getBalance()) {
-//            marketInfo.add(stock.getCompany().getName() + " " + stock.getValue(currentDate));
-//        }
-//        customerStockFrame.getCustomer_brought_stock_list().setModel(new DefaultComboBoxModel(marketInfo.toArray()));
+        customerStockFrame.getCustomer_brought_stock_list().setModel(new DefaultComboBoxModel(customer.getSecurityAccount().showOwnedStocks().toArray()));
     }
 
     public static void setBuy(CustomerStockFrame customerStockFrame) {
@@ -44,7 +41,7 @@ public class CustomerStockController {
     }
 
     public static void transaction(CustomerStockFrame customerStockFrame, Customer customer, String currentDate) {
-        if (!Tools.checkValidNumber(customerStockFrame, customerStockFrame.getTxtNumberOfShare_sell().getText())) {
+        if (Tools.checkValidNumber(customerStockFrame, customerStockFrame.getTxtNumberOfShare_sell().getText())) {
             if (customerStockFrame.getCustomer_sell_botton().getText().equals("Buy")) {
                 buyStock(customerStockFrame, customer, Integer.parseInt(customerStockFrame.getTxtNumberOfShare_sell().getText()), currentDate);
             } else {
@@ -57,7 +54,8 @@ public class CustomerStockController {
      *                        private methods
      ***************************************************************************/
     private static void buyStock(CustomerStockFrame customerStockFrame, Customer customer, int shareNum, String buyDate) {
-        String stockName = Tools.getFirstElementBeforeSpace(customerStockFrame.getCustomer_brought_stock_list().getSelectedValue().toString());
+        String stockName = Tools.getFirstElementBeforeSpace(customerStockFrame.getMarket_stock_lst().getSelectedValue().toString());
+        System.out.println(stockName);
         Tools.confirmDialog("Result", customer.getSecurityAccount().buyStock(stockName, shareNum, buyDate), customerStockFrame);
         flushCustomerStocks(customerStockFrame, customer);
     }

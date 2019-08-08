@@ -39,6 +39,9 @@ public class TradingSystem {
         customerMainFrame.getDepositRadioButton().addActionListener(e -> CustomerMainController.hideComboBox(customerMainFrame));
         customerMainFrame.getWithdrawRadioButton().addActionListener(e -> CustomerMainController.hideComboBox(customerMainFrame));
         customerMainFrame.getTransferRadioButton().addActionListener(e -> CustomerMainController.showComboBox(customerMainFrame));
+        customerMainFrame.getBtnMybonds().addActionListener(e -> CustomerMainController.openBond(customerMainFrame, customerBondFrame, customer));
+        customerMainFrame.getBtnStock().addActionListener(e -> CustomerMainController.openStock(customerMainFrame, customerStockFrame, customer, currentDate));
+
 
         // customerStockFrame
         customerStockFrame = new CustomerStockFrame();
@@ -51,9 +54,11 @@ public class TradingSystem {
         customerBondFrame.getBack_btn().addActionListener(e -> CustomerBondController.back(customerBondFrame, customerMainFrame, customer));
         customerBondFrame.getBond_comboBox().addActionListener(e -> CustomerBondController.updateBondInfo(customerBondFrame));
         customerBondFrame.getBuy_bond_btn().addActionListener(e -> CustomerBondController.buyBond(customerBondFrame, customer, currentDate));
-        customerBondFrame.getBtnSell_1().addActionListener(e -> CustomerBondController.sellBond(customerBondFrame, customer, currentDate, 0));
-        customerBondFrame.getBtnSell_2().addActionListener(e -> CustomerBondController.sellBond(customerBondFrame, customer, currentDate, 1));
-        customerBondFrame.getBtnSell_3().addActionListener(e -> CustomerBondController.sellBond(customerBondFrame, customer, currentDate, 2));
+        customerBondFrame.getBtnSell_1().addActionListener(e -> CustomerBondController.sellBond(customerBondFrame, customer, currentDate, 1));
+        customerBondFrame.getBtnSell_2().addActionListener(e -> CustomerBondController.sellBond(customerBondFrame, customer, currentDate, 2));
+        customerBondFrame.getBtnSell_3().addActionListener(e -> CustomerBondController.sellBond(customerBondFrame, customer, currentDate, 3));
+        customerBondFrame.getBtnNext().addActionListener(e -> CustomerBondController.nextPage(customerBondFrame, customer));
+        customerBondFrame.getBtnPrevious().addActionListener(e -> CustomerBondController.prevPage(customerBondFrame, customer));
 
         //MainFrame
         mainframe = new Mainframe();
@@ -61,11 +66,15 @@ public class TradingSystem {
         mainframe.getBtnManagerLogin().addActionListener(e -> MainController.managerLogin(mainframe));
         mainframe.getCustomer_login_btn().addActionListener(e -> MainController.customerLogin(mainframe));
         mainframe.getLogin_btn().addActionListener(e -> LoginController.loginAction(mainframe, customerMainFrame));
-        mainframe.getCreate_acc_btn().addActionListener(e -> CreateController.createAccount(mainframe));
-        mainframe.get
+        mainframe.getCreate_acc_btn().addActionListener(e -> MainController.createCustomer(mainframe));
+        mainframe.getBtnCreate_init().addActionListener(e -> CreateController.createAccount(mainframe));
+        mainframe.getBack_create_panel().addActionListener(e -> CreateController.back(mainframe));
+        mainframe.getBack_btn().addActionListener(e -> LoginController.back(mainframe));
     }
 
     public void dataInit() {
+
+        currentDate = Tools.generateCurrentDate();
         Manager manager = new Manager("Bruce", "Zhang", "U45687bedf", "123");
 
         Customer c1 = new Customer("asd", "hjk", "Usdjhfsid123", "123");
@@ -78,10 +87,14 @@ public class TradingSystem {
 
         Company company = new Company("Apple", "LASD123");
         Company c = new Company("Google", "HJAK567");
+
+
         Stock stock = new Stock(company);
         manager.addStock(stock);
+        System.out.println(manager.updateStock("LASD123", currentDate, 10));
         Stock sa = new Stock(c);
         manager.addStock(sa);
+        manager.updateStock("HJAK567", currentDate, 50);
     }
 
     public CustomerMainFrame getCustomerMainFrame() {
@@ -115,7 +128,8 @@ public class TradingSystem {
     public static void main(String[] args) {
         TradingSystem tradingSystem = new TradingSystem();
         tradingSystem.customer = new Customer("Gappery", "Li", "asdf", "asdf");
-        MainController.showMain(tradingSystem.getMainframe());
+        tradingSystem.manager = new Manager("Gappery", "li", "asdf", "asdf");
+        CustomerBondController.showView(tradingSystem.getCustomerBondFrame(), tradingSystem.getCustomer());
     }
 
 }

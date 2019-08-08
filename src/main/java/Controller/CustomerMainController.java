@@ -3,7 +3,9 @@ package Controller;
 import Helper.Tools;
 import Model.Account;
 import Model.Customer;
+import View.CustomerBondFrame;
 import View.CustomerMainFrame;
+import View.CustomerStockFrame;
 
 import javax.swing.*;
 
@@ -77,6 +79,16 @@ public class CustomerMainController {
             }
             updateAccountInfo(customerMainFrame, customer);
         }
+    }
+
+    public static void openBond(CustomerMainFrame customerMainFrame, CustomerBondFrame customerBondFrame, Customer customer) {
+        customerMainFrame.setVisible(false);
+        CustomerBondController.showView(customerBondFrame, customer);
+    }
+
+    public static void openStock(CustomerMainFrame customerMainFrame, CustomerStockFrame customerStockFrame, Customer customer, String currentDate) {
+        customerMainFrame.setVisible(false);
+        CustomerStockController.showView(customerStockFrame, customer, currentDate);
     }
 
     /****************************************************************************

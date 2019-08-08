@@ -1,3 +1,4 @@
+package View;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.FileNotFoundException;
@@ -77,6 +78,7 @@ public class CustomerMainFrame extends JFrame{
 		account_info = new JTextArea();
 		account_info.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		account_info.setEnabled(false);
+		account_info.setForeground(new Color(0, 104, 189));
 		account_info.setBounds(94, 53, 409, 219);
 		top_panel.add(account_info);
 		
@@ -292,4 +294,6 @@ public class CustomerMainFrame extends JFrame{
 	public ButtonGroup getGroup() {
 		return group;
 	}
+
+	public JLabel getTransfer_lbl() {return transfer_lbl;}
 }

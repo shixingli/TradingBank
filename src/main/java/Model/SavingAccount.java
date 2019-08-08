@@ -7,6 +7,6 @@ public class SavingAccount extends Account {
 	}
 	
 	public String toString() {
-		return "Saving account 6374 balance: " + super.getBalance();
+		return "Saving account 6374 \nbalance: " + super.getBalance();
 	}
 }

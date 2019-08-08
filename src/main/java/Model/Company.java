@@ -23,6 +23,10 @@ public class Company {
         return this.ticker;
     }
     
+    public String getTicker() {
+    	return ticker;
+    }
+    
     public String toString() {
     	return "Company name " + name + "\nticker " + ticker;
     }

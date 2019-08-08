@@ -21,6 +21,15 @@ public class Manager extends Trader{
 	
 	public static Set<String> customerStringSet = new HashSet<String>();
     
+	public static ArrayList<String> getStocks(String date){
+    	ArrayList<String> arr = new ArrayList<String>();
+    	arr.add("Ticker"+"  "+"Price");
+    	
+    	for(Stock stock : Manager.stocks)
+    		arr.add(stock.getCompany().getTicker() + "  " + stock.getValue(date));
+    	return arr;
+    }
+	
     public Manager(String firstName, String lastName, String id, String password) {
     	super(firstName, lastName, id, password);
     	
@@ -69,5 +78,4 @@ public class Manager extends Trader{
     public Stock getAStock(String name) {
     	return stockMap.get(name);
     }
-
 }

@@ -17,6 +17,6 @@ public class CreateController {
     }
 
     public static void createAccount (Mainframe mainframe) {
-
+        System.out.println("Create account");
     }
 }

@@ -4,10 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.FieldPosition;
-import java.text.NumberFormat;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
+import java.text.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -20,7 +17,7 @@ public class Tools {
     public static final String ERROR_EMPTY_STRING = "Empty id is not accepted";
     public static final String ERROR_DUPLICATE_STRING = "Id you enter is already used by other customer";
     public static final String[] ACCOUNT_TYPE = {"Checking Account", "Saving Account", "Security Account"};
-    public static final String[] Bond_TYPE = {"7 days Bond", "1 Month Bond", "3 Months Bond"};
+    public static final String[] Bond_TYPE = {"7 Days", "1 Month", "3 Months"};
 
 
     /************************************************************************
@@ -112,6 +109,11 @@ public class Tools {
         frame.setVisible(true);
     }
 
+    public static String generateCurrentDate () {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+        return simpleDateFormat.format(new Date());
+    }
+
 
     /************************************************************************
      *                           private methods
@@ -129,8 +131,21 @@ public class Tools {
         JOptionPane.showConfirmDialog(parent, content, title, JOptionPane.DEFAULT_OPTION);
     }
 
+    public static String dueDateCalculate(String buyDate, int period) {
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+            Date date = simpleDateFormat.parse(buyDate);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            calendar.add(Calendar.DATE, period);
+            return simpleDateFormat.format(calendar.getTime());
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
     public static void main(String[] args) {
-        System.out.println(generateUniqueId());
+        System.out.println(generateCurrentDate());
     }
 
 }

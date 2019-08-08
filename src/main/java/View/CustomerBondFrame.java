@@ -1,3 +1,5 @@
+package View;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.io.FileNotFoundException;
@@ -634,4 +636,6 @@ public class CustomerBondFrame extends JFrame{
 	public int getPagenumber() {
 		return pagenumber;
 	}
+
+	public void setPagenumber(int pagenumber) {this.pagenumber = pagenumber;}
 }

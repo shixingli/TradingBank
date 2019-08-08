@@ -165,18 +165,20 @@ public class SecurityAccount extends Account {
     			
     			//then delete the bond from the map
     			ownedBonds.remove(bond);
+
+    			return "Success!";
     			}
     			// sell bond before the date of the bond
     			else {
-    				//deposit the money of that bond into the account
-        			super.deposit(1 * ownedBonds.get(bond));
-        			super.withDraw(FEE);
-        			
-        			//then delete the bond from the map
-        			ownedBonds.remove(bond);
-        			}
-    			
-    			return "Success!";
+					//deposit the money of that bond into the account
+					super.deposit(1 * ownedBonds.get(bond));
+					super.withDraw(FEE);
+
+					//then delete the bond from the map
+					ownedBonds.remove(bond);
+
+					return "Sold before due date!";
+				}
 			}
     	}
     	

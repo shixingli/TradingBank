@@ -12,7 +12,8 @@ import java.util.List;
 
 public class CustomerStockController {
 
-    public static void showView(CustomerStockFrame customerStockFrame) {
+    public static void showView(CustomerStockFrame customerStockFrame, Customer customer, String currentDate) {
+        refreshView(customerStockFrame, customer, currentDate);
         Tools.showWindow(customerStockFrame);
     }
 

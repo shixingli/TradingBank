@@ -1,3 +1,4 @@
+package View;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -22,15 +23,8 @@ public class Mainframe extends JFrame{
 //	private Image icon = new ImageIcon(this.getClass().getResource("/Login.jpeg")).getImage();
 //	private Image soft = new ImageIcon(this.getClass().getResource("/soft.png")).getImage();
 //	private Image couple = new ImageIcon(this.getClass().getResource("couple.png")).getImage();
-//	private Image login = new ImageIcon(this.getClass().getResource("lock.png")).getImage();
-	private JButton customer_login_btn,btnManagerLogin,create_acc_btn,back_btn,login_btn,btnCreate_init;
-	private JTextField username_txt_dynamic;
-	private JPasswordField passwordField_dynamic;
-	private JTextField create_name;
-	private JTextField create_pwd;
-	private JTextField create_username;
-	private JLabel lblDynamicLogin;
-	private JPanel dynamic_login,create_acc_panel,main_panel,two_login_panel;
+	private JTextField textField;
+	private JPasswordField passwordField;
 	
 	public Mainframe() {
 		initialize();
@@ -39,113 +33,59 @@ public class Mainframe extends JFrame{
 	private void initialize() {
 		this.setBounds(450, 450, 1366, 768);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		getContentPane().setLayout(null);
+		this.getContentPane().setLayout(null);
 		
-		create_acc_panel = new JPanel();
-		create_acc_panel.setBounds(998, 366, 293, 276);
-		getContentPane().add(create_acc_panel);
-		create_acc_panel.setLayout(null);
-		
-		JLabel lblName = new JLabel("Name:");
-		lblName.setBounds(6, 59, 57, 27);
-		create_acc_panel.add(lblName);
-		
-		JLabel lblPassword_1 = new JLabel("Password:");
-		lblPassword_1.setBounds(6, 114, 83, 33);
-		create_acc_panel.add(lblPassword_1);
-		
-		create_name = new JTextField();
-		create_name.setBounds(102, 59, 130, 26);
-		create_acc_panel.add(create_name);
-		create_name.setColumns(10);
-		
-		create_pwd = new JTextField();
-		create_pwd.setBounds(101, 117, 130, 26);
-		create_acc_panel.add(create_pwd);
-		create_pwd.setColumns(10);
-		
-		JLabel lblUsername_1 = new JLabel("Username:");
-		lblUsername_1.setBounds(2, 18, 87, 29);
-		create_acc_panel.add(lblUsername_1);
-		
-		create_username = new JTextField();
-		create_username.setColumns(10);
-		create_username.setBounds(102, 21, 130, 26);
-		create_acc_panel.add(create_username);
-		
-		btnCreate_init = new JButton("Create");
-		btnCreate_init.setBounds(83, 205, 117, 29);
-		create_acc_panel.add(btnCreate_init);
-		
-		main_panel = new JPanel();
-		main_panel.setBounds(289, 28, 754, 614);
-		main_panel.setBackground(Color.WHITE);
-		main_panel.setBorder(new EmptyBorder(0, 0, 0, 0));
-		getContentPane().add(main_panel);
-		main_panel.setLayout(null);
-		main_panel.setOpaque(false);
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		panel.setBorder(new EmptyBorder(0, 0, 0, 0));
+		panel.setBounds(465, 147, 456, 486);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		panel.setOpaque(false);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(167, 21, 358, 246);
-		main_panel.add(lblNewLabel_1);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(66, -16, 298, 233);
+		panel.add(lblNewLabel_1);
+//		lblNewLabel_1.setIcon(new ImageIcon(soft));
 		
-		two_login_panel = new JPanel();
-		two_login_panel.setBounds(38, 353, 616, 123);
-		main_panel.add(two_login_panel);
-		two_login_panel.setLayout(null);
-		//		lblNewLabel_1.setIcon(new ImageIcon(soft));
-				
-				customer_login_btn = new JButton("Customer Login");
-				customer_login_btn.setBounds(17, 6, 255, 87);
-				two_login_panel.add(customer_login_btn);
-				
-				btnManagerLogin = new JButton("Manager Login");
-				btnManagerLogin.setBounds(355, 6, 255, 87);
-				two_login_panel.add(btnManagerLogin);
-				
-				create_acc_btn = new JButton("Create An Account");
-				create_acc_btn.setBounds(246, 94, 151, 29);
-				two_login_panel.add(create_acc_btn);
-		
-		dynamic_login = new JPanel();
-		dynamic_login.setBounds(215, 295, 272, 267);
-		main_panel.add(dynamic_login);
-		dynamic_login.setLayout(null);
-		
-		lblDynamicLogin = new JLabel("Dynamic Login");
-		lblDynamicLogin.setBounds(89, 5, 94, 16);
-		dynamic_login.add(lblDynamicLogin);
-		
-		JLabel dynamic_username_txt = new JLabel("Username:");
-		dynamic_username_txt.setBounds(27, 80, 61, 16);
-		dynamic_login.add(dynamic_username_txt);
+		textField = new JTextField();
+		textField.setBounds(223, 240, 175, 37);
+		panel.add(textField);
+		textField.setColumns(10);
+		 
+		JLabel lblNewLabel_2 = new JLabel("Username:");
+		lblNewLabel_2.setForeground(new Color(0, 104, 189));
+		lblNewLabel_2.setFont(new Font("Apple SD Gothic Neo", Font.PLAIN, 30));
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setBounds(6, 215, 205, 74);
+		panel.add(lblNewLabel_2);
 		
 		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setBounds(27, 146, 61, 16);
-		dynamic_login.add(lblPassword);
+		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPassword.setForeground(new Color(0, 104, 189));
+		lblPassword.setFont(new Font("Apple SD Gothic Neo", Font.PLAIN, 30));
+		lblPassword.setBounds(6, 301, 205, 74);
+		panel.add(lblPassword);
 		
-		username_txt_dynamic = new JTextField();
-		username_txt_dynamic.setBounds(111, 75, 130, 26);
-		dynamic_login.add(username_txt_dynamic);
-		username_txt_dynamic.setColumns(10);
+//		JButton btnNewButton = new JButton("Login");
+//		btnNewButton.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//			}
+//		});
+//		btnNewButton.setForeground(new Color(0, 104, 189));
+//		btnNewButton.setFont(new Font("Apple SD Gothic Neo", Font.PLAIN, 30));
+//		btnNewButton.setBounds(171, 409, 83, 37);
+//		panel.add(btnNewButton);
 		
-		login_btn = new JButton("Login");
-		login_btn.setBounds(76, 199, 117, 29);
-		dynamic_login.add(login_btn);
-		
-		passwordField_dynamic = new JPasswordField();
-		passwordField_dynamic.setBounds(111, 141, 130, 26);
-		dynamic_login.add(passwordField_dynamic);
-		
-		back_btn = new JButton("<");
-		back_btn.setBounds(125, 232, 27, 29);
-		dynamic_login.add(back_btn);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(223, 325, 175, 37);
+		panel.add(passwordField);
 
 
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(0, 0, 1366, 768);
+		lblNewLabel.setBounds(0, 0, 1366,768);
 		getContentPane().add(lblNewLabel);
 //		lblNewLabel.setIcon(new ImageIcon(img));
 		
@@ -153,117 +93,5 @@ public class Mainframe extends JFrame{
 		
 
 		
-	}
-
-	/**
-	 * @return the customer_login_btn
-	 */
-	public JButton getCustomer_login_btn() {
-		return customer_login_btn;
-	}
-
-	/**
-	 * @return the btnManagerLogin
-	 */
-	public JButton getBtnManagerLogin() {
-		return btnManagerLogin;
-	}
-
-	/**
-	 * @return the create_acc_btn
-	 */
-	public JButton getCreate_acc_btn() {
-		return create_acc_btn;
-	}
-
-	/**
-	 * @return the back_btn
-	 */
-	public JButton getBack_btn() {
-		return back_btn;
-	}
-
-	/**
-	 * @return the login_btn
-	 */
-	public JButton getLogin_btn() {
-		return login_btn;
-	}
-
-	/**
-	 * @return the btnCreate_init
-	 */
-	public JButton getBtnCreate_init() {
-		return btnCreate_init;
-	}
-
-	/**
-	 * @return the username_txt_dynamic
-	 */
-	public JTextField getUsername_txt_dynamic() {
-		return username_txt_dynamic;
-	}
-
-	/**
-	 * @return the passwordField_dynamic
-	 */
-	public JPasswordField getPasswordField_dynamic() {
-		return passwordField_dynamic;
-	}
-
-	/**
-	 * @return the create_name
-	 */
-	public JTextField getCreate_name() {
-		return create_name;
-	}
-
-	/**
-	 * @return the create_pwd
-	 */
-	public JTextField getCreate_pwd() {
-		return create_pwd;
-	}
-
-	/**
-	 * @return the create_username
-	 */
-	public JTextField getCreate_username() {
-		return create_username;
-	}
-
-	/**
-	 * @return the lblDynamicLogin
-	 */
-	public JLabel getLblDynamicLogin() {
-		return lblDynamicLogin;
-	}
-
-	/**
-	 * @return the dynamic_login
-	 */
-	public JPanel getDynamic_login() {
-		return dynamic_login;
-	}
-
-	/**
-	 * @return the create_acc_panel
-	 */
-	public JPanel getCreate_acc_panel() {
-		return create_acc_panel;
-	}
-
-	/**
-	 * @return the main_panel
-	 */
-	public JPanel getMain_panel() {
-		return main_panel;
-	}
-
-	/**
-	 * @return the two_login_panel
-	 */
-	public JPanel getTwo_login_panel() {
-		return two_login_panel;
 	}
 }

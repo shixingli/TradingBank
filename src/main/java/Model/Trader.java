@@ -26,4 +26,8 @@ public class Trader {
 	public String getLastName() {
 		return lastName;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
 }

@@ -1,5 +1,12 @@
 package Model;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -8,6 +15,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class Manager extends Trader{
+	public static String fileName = "C:/Users/Teddyzhang的PC/Desktop/customer.txt";
 	
 	public static List<Customer> customerList = new ArrayList<>();
     
@@ -30,6 +38,71 @@ public class Manager extends Trader{
     	return arr;
     }
 	
+	public static void readCustomerList() {
+		 File file = new File(fileName);
+	     BufferedReader reader = null;
+	        try {
+	            reader = new BufferedReader(new FileReader(file));
+	            String tempString = null;
+	            // read by one line
+	            while ((tempString = reader.readLine()) != null) {
+	                
+	                //split the string
+	                String[] strings = tempString.split(";");
+	                
+	                String firstName = strings[0];
+	                String lastName= strings[1];
+	                String id = strings[2];
+	                String password = strings[3];
+	                
+	                Customer customer = new Customer(firstName, lastName, id, password);
+	                
+	                Manager.customerList.add(customer);
+	                Manager.customerStringSet.add(id);
+	            }
+	            
+	            reader.close();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        } finally {
+	            if (reader != null) {
+	                try {
+	                    reader.close();
+	                } catch (IOException e1) {
+	                }
+	            }
+	        }
+	}
+	
+	public static void writeCustomerList() {
+		FileWriter writer;
+		
+		try {
+			writer = new FileWriter(fileName);
+			
+			BufferedWriter bw = new BufferedWriter(writer);
+			
+			for(Customer customer : Manager.customerList) {
+				String s = customer.getFirstName()+";"+customer.getLastName()+";"+customer.getID()+";"+customer.getPassword();
+				bw.write(s.toString()+ "\r\n");	
+			}
+		
+			bw.close();
+			writer.close();
+		}
+		catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+}
+	
+    public static void showCustomerList() {
+    	for(Customer customer : customerList)
+    		System.out.println(customer.toString());
+    }
+	
     public Manager(String firstName, String lastName, String id, String password) {
     	super(firstName, lastName, id, password);
     	
@@ -38,10 +111,10 @@ public class Manager extends Trader{
     	bondMap.put(90, 0.3);
     }	
     
-    public String updateStock(String name, String date, double newValue) {
+    public String updateStock(String ticker, String date, double newValue) {
     	
-    	if(stockMap.containsKey(name)) {
-    		stockMap.get(name).updateStock(date, newValue);
+    	if(stockMap.containsKey(ticker)) {
+    		stockMap.get(ticker).updateStock(date, newValue);
     		
     		return "Success!";
     	}
@@ -62,7 +135,7 @@ public class Manager extends Trader{
     public void addStock(Stock stock) {
     	
     	stocks.add(stock);
-    	stockMap.put(stock.getCompany().getName(), stock);
+    	stockMap.put(stock.getCompany().getTicker(), stock);
     }
     
     public void addBond(Bond bond) {
@@ -75,7 +148,8 @@ public class Manager extends Trader{
     	customerList.add(customer);
     }
     
-    public Stock getAStock(String name) {
-    	return stockMap.get(name);
+    public Stock getAStock(String ticker) {
+    	return stockMap.get(ticker);
     }
+    
 }

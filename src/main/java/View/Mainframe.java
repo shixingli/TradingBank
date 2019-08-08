@@ -38,6 +38,7 @@ public class Mainframe extends JFrame{
 	private JButton customer_login_btn;
 	private JButton back_create_panel;
 	private boolean isCustomer = false;
+	private JButton main_exit;
 
 	public Mainframe() {
 		initialize();
@@ -175,6 +176,12 @@ public class Mainframe extends JFrame{
 		lblNewLabel.setBounds(0, 0, 1366, 768);
 		getContentPane().add(lblNewLabel);
 //		lblNewLabel.setIcon(new ImageIcon(img));
+
+		main_exit = new JButton("X");
+		main_exit.setBounds(1333, 6, 27, 29);
+		getContentPane().add(main_exit);
+		
+		
 		
 
 		
@@ -307,5 +314,12 @@ public class Mainframe extends JFrame{
 	 */
 	public JButton getBack_create_panel() {
 		return back_create_panel;
+	}
+
+	/**
+	 * @return the main_exit
+	 */
+	public JButton getMain_exit() {
+		return main_exit;
 	}	
 }

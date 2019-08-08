@@ -28,6 +28,7 @@ public class Mainframe extends JFrame{
 //	private Image bono = new ImageIcon(this.getClass().getResource("rect.png")).getImage();
 	
 	private JButton btnManagerLogin,create_acc_btn,back_btn,login_btn,btnCreate_init;
+	private JButton btnManagerLogin,register_btn,back_btn,login_btn,create_btn;
 	private JTextField username_txt_dynamic;
 	private JPasswordField passwordField_dynamic;
 	private JTextField create_name;
@@ -84,9 +85,9 @@ public class Mainframe extends JFrame{
 		create_username.setBounds(102, 21, 130, 26);
 		create_acc_panel.add(create_username);
 		
-		btnCreate_init = new JButton("Create");
-		btnCreate_init.setBounds(83, 205, 117, 29);
-		create_acc_panel.add(btnCreate_init);
+		create_btn = new JButton("Create");
+		create_btn.setBounds(83, 205, 117, 29);
+		create_acc_panel.add(create_btn);
 		
 		back_create_panel = new JButton("X");
 		back_create_panel.setBounds(260, 6, 27, 29);
@@ -125,11 +126,11 @@ public class Mainframe extends JFrame{
 		btnManagerLogin.setForeground(new Color(0, 104, 189));
 		two_login_panel.add(btnManagerLogin);
 
-		create_acc_btn = new JButton("Register");
-		create_acc_btn.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		create_acc_btn.setForeground(new Color(0, 104, 189));
-		create_acc_btn.setBounds(226, 94, 151, 29);
-		two_login_panel.add(create_acc_btn);
+		register_btn = new JButton("Register");
+		register_btn.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		register_btn.setForeground(new Color(0, 104, 189));
+		register_btn.setBounds(226, 94, 151, 29);
+		two_login_panel.add(register_btn);
 		
 		dynamic_login = new JPanel();
 		dynamic_login.setBounds(214, 293, 272, 267);
@@ -207,7 +208,7 @@ public class Mainframe extends JFrame{
 	 * @return the create_acc_btn
 	 */
 	public JButton getCreate_acc_btn() {
-		return create_acc_btn;
+		return register_btn;
 	}
 
 	/**
@@ -228,7 +229,7 @@ public class Mainframe extends JFrame{
 	 * @return the btnCreate_init
 	 */
 	public JButton getBtnCreate_init() {
-		return btnCreate_init;
+		return create_btn;
 	}
 
 	/**

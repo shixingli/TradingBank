@@ -4,10 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.FieldPosition;
-import java.text.NumberFormat;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
+import java.text.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -19,7 +16,9 @@ public class Tools {
     public static final String ERROR_NOT_CORRECT_RANGE = "Invalid number";
     public static final String ERROR_EMPTY_STRING = "Empty id is not accepted";
     public static final String ERROR_DUPLICATE_STRING = "Id you enter is already used by other customer";
-    public static final String[] ACCOUNT_TYPE = {"Checking Account", "Saving Acoount", "Security Account"};
+
+    public static final String[] ACCOUNT_TYPE = {"Checking Account", "Saving Account", "Security Account"};
+    public static final String[] Bond_TYPE = {"7 Days", "1 Month", "3 Months"};
 
 
     /************************************************************************
@@ -44,14 +43,16 @@ public class Tools {
         return true;
     }
 
-    public static long getDateDifference(String date1, String date2){
+
+    public static int getDateDifference(String date1, String date2) {
+
 
         try {
             // get how many days between date 1 and date 2
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
             Date startDate = simpleDateFormat.parse(date1);
             Date endDate = simpleDateFormat.parse(date2);
-            return (int)(TimeUnit.DAYS.convert(Math.abs(startDate.getTime() - endDate.getTime()), TimeUnit.MILLISECONDS));
+            return (int) (TimeUnit.DAYS.convert(Math.abs(startDate.getTime() - endDate.getTime()), TimeUnit.MILLISECONDS));
         } catch (Exception e) {
             return -1;
         }
@@ -83,6 +84,43 @@ public class Tools {
         return true;
     }
 
+    public static boolean checkValidInteger(JFrame frame, String input) {
+        double value;
+        try {
+            value = Integer.parseInt(input);
+        } catch (Exception e) {
+            System.out.println(input);
+            confirmDialog("Error", ERROR_NOT_NUMBER, frame);
+            return false;
+        }
+        if (value < 0) {
+            confirmDialog("Error", ERROR_NOT_CORRECT_RANGE, frame);
+            return false;
+        }
+
+        return true;
+    }
+
+    public static String getFirstElementBeforeSpace(String input) {
+        return input.trim().split(" ")[0];
+    }
+
+    public static <T extends JFrame> void showWindow(T frame) {
+        int windowWidth = frame.getWidth();
+        int windowHeight = frame.getHeight();
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+        frame.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);
+        frame.setVisible(true);
+    }
+
+    public static String generateCurrentDate () {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+        return simpleDateFormat.format(new Date());
+    }
+
 
     /************************************************************************
      *                           private methods
@@ -110,4 +148,24 @@ public class Tools {
         frame.setLocation(screenWidth/2-windowWidth/2, screenHeight/2-windowHeight/2);
         frame.setVisible(true);
     }
+
+    public static String dueDateCalculate(String buyDate, int period) {
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+            Date date = simpleDateFormat.parse(buyDate);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            calendar.add(Calendar.DATE, period);
+            return simpleDateFormat.format(calendar.getTime());
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(generateCurrentDate());
+    }
+
 }
+
+

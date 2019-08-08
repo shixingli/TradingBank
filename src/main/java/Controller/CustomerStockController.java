@@ -12,30 +12,27 @@ import java.util.List;
 
 public class CustomerStockController {
 
-    public static void showView(CustomerStockFrame customerStockFrame) {
+    public static void showView(CustomerStockFrame customerStockFrame, Customer customer, String currentDate) {
+        refreshView(customerStockFrame, customer, currentDate);
         Tools.showWindow(customerStockFrame);
     }
 
     public static void refreshView(CustomerStockFrame customerStockFrame, Customer customer, String currentDate) {
-        flushMarketStocks(customerStockFrame, currentDate);
+        flushMarketStocks(customerStockFrame, currentDate, customer);
         flushCustomerStocks(customerStockFrame, customer);
         customerStockFrame.getTxtNumberOfShare_sell().setText("");
     }
 
-    public static void flushMarketStocks(CustomerStockFrame customerStockFrame, String currentDate) {
-        List<String> marketInfo = new ArrayList();
-        for (Stock stock : Manager.stocks) {
-            marketInfo.add(stock.getCompany().getName() + " " + stock.getValue(currentDate));
-        }
-        customerStockFrame.getCustomer_brought_stock_list().setModel(new DefaultComboBoxModel(marketInfo.toArray()));
+    public static void flushMarketStocks(CustomerStockFrame customerStockFrame, String currentDate, Customer customer) {
+        customerStockFrame.getCustomer_brought_stock_list().setModel(new DefaultComboBoxModel(Manager.getStocks(currentDate).toArray()));
     }
 
     public static void flushCustomerStocks(CustomerStockFrame customerStockFrame, Customer customer) {
-        List<String> selfInfo = new ArrayList();
-        for (Stock stock : customer.getSecurityAccount().getBalance()) {
-            marketInfo.add(stock.getCompany().getName() + " " + stock.getValue(currentDate));
-        }
-        customerStockFrame.getCustomer_brought_stock_list().setModel(new DefaultComboBoxModel(marketInfo.toArray()));
+//        List<String> selfInfo = new ArrayList();
+//        for (Stock stock : customer.getSecurityAccount().getBalance()) {
+//            marketInfo.add(stock.getCompany().getName() + " " + stock.getValue(currentDate));
+//        }
+//        customerStockFrame.getCustomer_brought_stock_list().setModel(new DefaultComboBoxModel(marketInfo.toArray()));
     }
 
     public static void setBuy(CustomerStockFrame customerStockFrame) {

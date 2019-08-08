@@ -35,7 +35,7 @@ public class SecurityAccount extends Account {
     //name of stock, number of shares to buy, buy date
     public String buyStock(String ticker, int num, String date) {
     	//check if enough money for buying the stock
-        if(Manager.stockMap.get(ticker).getValue(date) * num + FEE> super.getBalance())    	
+        if(Manager.stockMap.get(ticker).getValue(date) * num + FEE> super.getBalance()) 
         	return "No enough money!";
         
         else {	
@@ -72,7 +72,8 @@ public class SecurityAccount extends Account {
         		map.put(date, arrayList);
         		
         		ownedStocks.put(Manager.stockMap.get(ticker), map);
-        	}
+			}
+			super.setDescription("bought " + num + " " + ticker + " stock(s) ($" + (num*FEE + Manager.stockMap.get(ticker).getValue(date)) + ") in security account.");
         	return "Success!";
         }	
     }
@@ -104,7 +105,7 @@ public class SecurityAccount extends Account {
 	    			
 	    			//then put a negative num into the arraylist indicating the sold shares of the stock
 	    			ownedStocks.get(Manager.stockMap.get(ticker)).get(date).add(-num);
-	    			
+	    			super.setDescription("sold " + num + " " + ticker + " stock(s) ($" + (num*FEE + Manager.stockMap.get(ticker).getValue(date)) + ") in security account.");
 	    			return "Success!";
     			}
     			else
@@ -148,7 +149,7 @@ public class SecurityAccount extends Account {
         	//withdraw the same amount money as money for purchasing
             super.withDraw(money);
             super.withDraw(FEE);
-                	
+            super.setDescription("bought " + num + " " + ticker + " bond(s) ($" + ((Manager.bondMap.get(bond.getPeriod())) * ownedBonds.get(bond)) + ") in security account.");
         	return "Success!";
         }      	
     }
@@ -165,7 +166,7 @@ public class SecurityAccount extends Account {
     			
     			//then delete the bond from the map
     			ownedBonds.remove(bond);
-
+				super.setDescription("sold " + num + " " + ticker + " bond(s) ($" + ((Manager.bondMap.get(bond.getPeriod())) * ownedBonds.get(bond)) + ") in security account.");
     			return "Success!";
     			}
     			// sell bond before the date of the bond

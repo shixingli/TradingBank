@@ -19,7 +19,7 @@ public class Customer extends Trader{
     
     public Transaction getTransaction() {
     	return transaction;
-    }
+	}
     
     public CheckingAccount getCheckingAccount() {
     	return checkingAccount;
@@ -56,5 +56,12 @@ public class Customer extends Trader{
     
     public String toString() {
     	return "customer's last name: " + super.getLastName() + "\ncustomer's " + getCheckingAccount().toString() + "\ncustomer's " + getSavingAccount().toString() + "\ncustomer's " + getSecurityAccount().toString();
-    }
+	}
+	
+	public static void main(String[] args) {
+		Customer customer = new Customer("Shi", "Zhen", "Usdjhfsid123", "456");
+		customer.getCheckingAccount().deposit(100);
+		customer.transaction.addNewTransaction(customer.checkingAccount);
+		System.out.println(customer.transaction.getAll());
+	}
 }

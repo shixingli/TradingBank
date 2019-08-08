@@ -29,7 +29,6 @@ public class Stock {
     }
     
     public void updateStock(String date, Double value) {
-    	if(priceInfo.containsKey(date))
     		priceInfo.put(date, value);
     }
     

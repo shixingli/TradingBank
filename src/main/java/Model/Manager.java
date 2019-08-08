@@ -111,10 +111,13 @@ public class Manager extends Trader{
     	bondMap.put(90, 0.3);
     }	
     
-    public String updateStock(String ticker, String date, double newValue) {
+    public static String updateStock(String ticker, String date, double newValue) {
     	
     	if(stockMap.containsKey(ticker)) {
     		stockMap.get(ticker).updateStock(date, newValue);
+    		for(Stock stock : stocks)
+    			if(stock.getCompany().getTicker().equals(ticker))
+    				stock.updateStock(date,newValue);
 
     		return "Success!";
     	}
@@ -132,7 +135,7 @@ public class Manager extends Trader{
     	return "No such Bond!";
     }
     
-    public void addStock(Stock stock) {
+    public static void addStock(Stock stock) {
     	stocks.add(stock);
     	stockMap.put(stock.getCompany().getTicker(), stock);
     }

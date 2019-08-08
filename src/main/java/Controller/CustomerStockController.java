@@ -4,6 +4,7 @@ import Helper.Tools;
 import Model.Customer;
 import Model.Manager;
 import Model.Stock;
+import View.CustomerMainFrame;
 import View.CustomerStockFrame;
 
 import javax.swing.*;
@@ -50,12 +51,18 @@ public class CustomerStockController {
         }
     }
 
+    public static void back(CustomerStockFrame customerStockFrame, CustomerMainFrame customerMainFrame, Customer customer) {
+        customerStockFrame.setVisible(false);
+        CustomerMainController.showView(customerMainFrame, customer);
+    }
+
     /****************************************************************************
      *                        private methods
      ***************************************************************************/
     private static void buyStock(CustomerStockFrame customerStockFrame, Customer customer, int shareNum, String buyDate) {
         String stockName = Tools.getFirstElementBeforeSpace(customerStockFrame.getMarket_stock_lst().getSelectedValue().toString());
         System.out.println(stockName);
+        System.out.println(Manager.stockMap.get(stockName).getValue(buyDate));
         Tools.confirmDialog("Result", customer.getSecurityAccount().buyStock(stockName, shareNum, buyDate), customerStockFrame);
         flushCustomerStocks(customerStockFrame, customer);
     }

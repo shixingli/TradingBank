@@ -24,13 +24,7 @@ public class TradingSystem {
     private Manager manager;
 
 
-
-    public TradingSystem() {
-        // cutomerMainFrame
-        customerMainFrame = new CustomerMainFrame();
-        customerMainFrame.setVisible(true);
-
-    private String currentDate;
+    public static String currentDate;
 
     public TradingSystem() {
         frameInit();
@@ -58,6 +52,8 @@ public class TradingSystem {
         customerStockFrame.getCustomer_brought_stock_list().addListSelectionListener(e -> CustomerStockController.setSell(customerStockFrame));
         customerStockFrame.getMarket_stock_lst().addListSelectionListener(e -> CustomerStockController.setBuy(customerStockFrame));
         customerStockFrame.getCustomer_sell_botton().addActionListener(e -> CustomerStockController.transaction(customerStockFrame, customer, currentDate));
+        customerStockFrame.getBack_botton().addActionListener(e -> CustomerStockController.back(customerStockFrame, customerMainFrame, customer));
+
 
         //customerBondFrame
         customerBondFrame = new CustomerBondFrame();
@@ -75,9 +71,9 @@ public class TradingSystem {
         mainframe.getBtnCreate_init().addActionListener(e -> MainController.createCustomer(mainframe));
         mainframe.getBtnManagerLogin().addActionListener(e -> MainController.managerLogin(mainframe));
         mainframe.getCustomer_login_btn().addActionListener(e -> MainController.customerLogin(mainframe));
-        mainframe.getLogin_btn().addActionListener(e -> LoginController.loginAction(mainframe, customerMainFrame));
+        mainframe.getLogin_btn().addActionListener(e -> LoginController.loginAction(mainframe, customerMainFrame,customer));
         mainframe.getCreate_acc_btn().addActionListener(e -> MainController.createCustomer(mainframe));
-        mainframe.getBtnCreate_init().addActionListener(e -> CreateController.createAccount(mainframe));
+        mainframe.getBtnCreate_init().addActionListener(e -> CreateController.createAccount(mainframe, customer));
         mainframe.getBack_create_panel().addActionListener(e -> CreateController.back(mainframe));
         mainframe.getBack_btn().addActionListener(e -> LoginController.back(mainframe));
     }
@@ -85,6 +81,7 @@ public class TradingSystem {
     public void dataInit() {
 
         currentDate = Tools.generateCurrentDate();
+        System.out.println(currentDate);
         Manager manager = new Manager("Bruce", "Zhang", "U45687bedf", "123");
 
         Customer c1 = new Customer("asd", "hjk", "Usdjhfsid123", "123");
@@ -105,6 +102,10 @@ public class TradingSystem {
         Stock sa = new Stock(c);
         manager.addStock(sa);
         manager.updateStock("HJAK567", currentDate, 50);
+
+//        System.out.println(customer.getSecurityAccount().buyStock("HJAK567",7,currentDate));
+//
+//        System.out.println(customer.getSecurityAccount().buyStock("HJAK567",100,currentDate));
     }
 
     public CustomerMainFrame getCustomerMainFrame() {
@@ -133,7 +134,14 @@ public class TradingSystem {
         TradingSystem tradingSystem = new TradingSystem();
         tradingSystem.customer = new Customer("Gappery", "Li", "asdf", "asdf");
         tradingSystem.manager = new Manager("Gappery", "li", "asdf", "asdf");
-        CustomerBondController.showView(tradingSystem.getCustomerBondFrame(), tradingSystem.getCustomer());
+        MainController.showMain(tradingSystem.getMainframe());
     }
 
+    public CustomerStockFrame getCustomerStockFrame() {
+        return customerStockFrame;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
 }

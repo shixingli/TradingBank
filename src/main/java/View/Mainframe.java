@@ -23,15 +23,10 @@ public class Mainframe extends JFrame{
 //	private Image icon = new ImageIcon(this.getClass().getResource("/Login.jpeg")).getImage();
 //	private Image soft = new ImageIcon(this.getClass().getResource("/soft.png")).getImage();
 //	private Image couple = new ImageIcon(this.getClass().getResource("couple.png")).getImage();
-	private JTextField textField;
-	private JPasswordField passwordField;
-
 //	private Image login = new ImageIcon(this.getClass().getResource("lock.png")).getImage();
-	private JButton customer_login_btn,btnManagerLogin,create_acc_btn,back_btn,login_btn,btnCreate_init;
 //	private Image bono = new ImageIcon(this.getClass().getResource("rect.png")).getImage();
 	
-//	private JButton btnManagerLogin,create_acc_btn,back_btn,login_btn,btnCreate_init;
-	private JButton register_btn,create_btn;
+	private JButton btnManagerLogin,register_btn,back_btn,login_btn,create_btn;
 	private JTextField username_txt_dynamic;
 	private JPasswordField passwordField_dynamic;
 	private JTextField create_name;
@@ -39,7 +34,7 @@ public class Mainframe extends JFrame{
 	private JTextField create_username;
 	private JLabel lblDynamicLogin;
 	private JPanel dynamic_login,create_acc_panel,main_panel,two_login_panel;
-//	private JButton customer_login_btn;
+	private JButton customer_login_btn;
 	private JButton back_create_panel;
 	private boolean isCustomer = false;
 	private JButton main_exit;
@@ -51,16 +46,8 @@ public class Mainframe extends JFrame{
 	private void initialize() {
 		this.setBounds(450, 450, 1366, 768);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.getContentPane().setLayout(null);
+		getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		panel.setBorder(new EmptyBorder(0, 0, 0, 0));
-		panel.setBounds(465, 147, 456, 486);
-		getContentPane().add(panel);
-		panel.setLayout(null);
-		panel.setOpaque(false);
-
 		create_acc_panel = new JPanel();
 		create_acc_panel.setBounds(998, 366, 293, 276);
 		getContentPane().add(create_acc_panel);
@@ -113,30 +100,9 @@ public class Mainframe extends JFrame{
 		main_panel.setOpaque(false);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(167, 21, 358, 246);
+		main_panel.add(lblNewLabel_1);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-
-		lblNewLabel_1.setBounds(66, -16, 298, 233);
-		panel.add(lblNewLabel_1);
-//		lblNewLabel_1.setIcon(new ImageIcon(soft));
-		
-		textField = new JTextField();
-		textField.setBounds(223, 240, 175, 37);
-		panel.add(textField);
-		textField.setColumns(10);
-		 
-		JLabel lblNewLabel_2 = new JLabel("Username:");
-		lblNewLabel_2.setForeground(new Color(0, 104, 189));
-		lblNewLabel_2.setFont(new Font("Apple SD Gothic Neo", Font.PLAIN, 30));
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(6, 215, 205, 74);
-		panel.add(lblNewLabel_2);
-		
-		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPassword.setForeground(new Color(0, 104, 189));
-		lblPassword.setFont(new Font("Apple SD Gothic Neo", Font.PLAIN, 30));
-		lblPassword.setBounds(6, 301, 205, 74);
-		panel.add(lblPassword);
 		
 		two_login_panel = new JPanel();
 		two_login_panel.setBounds(38, 353, 616, 123);
@@ -165,7 +131,7 @@ public class Mainframe extends JFrame{
 		two_login_panel.add(register_btn);
 		
 		dynamic_login = new JPanel();
-		dynamic_login.setBounds(214, 293, 272, 267);
+		dynamic_login.setBounds(213, 294, 272, 267);
 		main_panel.add(dynamic_login);
 		dynamic_login.setLayout(null);
 		dynamic_login.setVisible(false);
@@ -185,20 +151,11 @@ public class Mainframe extends JFrame{
 		lblPassword.setForeground(new Color(0, 104, 189));
 		dynamic_login.add(lblPassword);
 		
-//		JButton btnNewButton = new JButton("Login");
-//		btnNewButton.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//			}
-//		});
-//		btnNewButton.setForeground(new Color(0, 104, 189));
-//		btnNewButton.setFont(new Font("Apple SD Gothic Neo", Font.PLAIN, 30));
-//		btnNewButton.setBounds(171, 409, 83, 37);
-//		panel.add(btnNewButton);
+		username_txt_dynamic = new JTextField();
+		username_txt_dynamic.setBounds(111, 75, 130, 26);
+		dynamic_login.add(username_txt_dynamic);
+		username_txt_dynamic.setColumns(10);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(223, 325, 175, 37);
-		panel.add(passwordField);
-
 		login_btn = new JButton("Login");
 		login_btn.setForeground(new Color(0, 104, 189));
 		login_btn.setBounds(76, 199, 117, 29);
@@ -212,9 +169,10 @@ public class Mainframe extends JFrame{
 		back_btn.setBounds(125, 232, 27, 29);
 		dynamic_login.add(back_btn);
 
+
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(0, 0, 1366,768);
+		lblNewLabel.setBounds(0, 0, 1366, 768);
 		getContentPane().add(lblNewLabel);
 //		lblNewLabel.setIcon(new ImageIcon(img));
 

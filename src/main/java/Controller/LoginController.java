@@ -12,8 +12,8 @@ public class LoginController {
         mainframe.getPasswordField_dynamic().setText("");
     }
 
-    public static void loginAction(Mainframe mainframe, CustomerMainFrame customerMainFrame) {
-        if (mainframe.isCustomer()) customerLogin(mainframe, customerMainFrame);
+    public static void loginAction(Mainframe mainframe, CustomerMainFrame customerMainFrame, Customer customer) {
+        if (mainframe.isCustomer()) customerLogin(mainframe, customerMainFrame, customer);
         else managerLogin(mainframe);
     }
 
@@ -26,11 +26,16 @@ public class LoginController {
     /****************************************************************************
      *                        customer longin methods
      ***************************************************************************/
-    public static void customerLogin(Mainframe mainframe, CustomerMainFrame customerMainFrame) {
+    public static void customerLogin(Mainframe mainframe, CustomerMainFrame customerMainFrame, Customer customer) {
         if (mainframe.getUsername_txt_dynamic().getText().length() != 0 && mainframe.getPasswordField_dynamic().getText().length() != 0){
-            mainframe.setVisible(false);
-            Customer customer = new Customer("Gappery", "Li", "a1", "adf");
-            CustomerMainController.showView(customerMainFrame, customer);
+            Customer temp = Customer.customerLogin(mainframe.getUsername_txt_dynamic().getText(), mainframe.getPasswordField_dynamic().getText());
+            if (temp == null) {
+                Tools.confirmDialog("Result", "Incorrect username or password", mainframe);
+            } else {
+                mainframe.setVisible(false);
+                customer = temp;
+                CustomerMainController.showView(customerMainFrame, customer);
+            }
         } else {
             Tools.confirmDialog("Result", "Empty Input is not allowed", mainframe);
         }
@@ -44,9 +49,11 @@ public class LoginController {
      ***************************************************************************/
     public static void managerLogin(Mainframe mainframe) {
         if (mainframe.getUsername_txt_dynamic().getText().length() != 0 && mainframe.getPasswordField_dynamic().getText().length() != 0){
-
+//            mainframe.setVisible(false);
+//            customer = temp;
+//            CustomerMainController.showView(customerMainFrame, customer);
         } else {
-
+            Tools.confirmDialog("Result", "Empty Input is not allowed", mainframe);
         }
     }
 

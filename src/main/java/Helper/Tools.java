@@ -138,17 +138,6 @@ public class Tools {
         JOptionPane.showConfirmDialog(parent, content, title, JOptionPane.DEFAULT_OPTION);
     }
 
-    private static <T extends JFrame> void showWindow(T frame) {
-        int windowWidth = frame.getWidth();
-        int windowHeight = frame.getHeight();
-        Toolkit kit = Toolkit.getDefaultToolkit();
-        Dimension screenSize = kit.getScreenSize();
-        int screenWidth = screenSize.width;
-        int screenHeight = screenSize.height;
-        frame.setLocation(screenWidth/2-windowWidth/2, screenHeight/2-windowHeight/2);
-        frame.setVisible(true);
-    }
-
     public static String dueDateCalculate(String buyDate, int period) {
         try {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");

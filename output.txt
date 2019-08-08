@@ -1,0 +1,6 @@
+Company name Apple
+ticker apple
+Company name Microsoft
+ticker microsoft
+Company name Twitter
+ticker twitter

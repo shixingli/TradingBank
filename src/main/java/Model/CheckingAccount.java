@@ -8,8 +8,10 @@ public class CheckingAccount extends Account {
 
 	@Override
 	public String deposit(double num) {
-		//super.deposit(num);
-
+		super.addBalance(num);
+		// String date = 
+		String des = "deposited " + num + " on " + date;
+		Transaction.addRecord(this, desp, num, date);
 		return "Success!";
 	}
 	

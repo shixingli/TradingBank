@@ -12,12 +12,16 @@ public abstract class Account implements java.io.Serializable {
     	return balance;
     }
     
+    public void addBalance(double num) {
+        this.balance += num;
+    }
+
 	public Account(double balance) {
 		this.balance = balance;
     }
     
     public String deposit(double num) {
-        this.balance += num;
+        this.addBalance(num);
         return "Success!";
     }
 

@@ -1,11 +1,12 @@
 package Model;
 
+import java.io.Serializable;
 import java.io.ObjectInputStream.GetField;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Stock {
+public class Stock implements Serializable {
 
     private Company company;
     private Map<String, Double> priceInfo;
@@ -27,6 +28,8 @@ public class Stock {
     public Double getValue(String date) {
     	return priceInfo.get(date);
     }
+
+    public String getName() {return this.company.getName();}
     
     public void updateStock(String date, Double value) {
     	if(priceInfo.containsKey(date))
@@ -37,6 +40,16 @@ public class Stock {
     	return priceInfo;
     }
     
+    public Stock findStock(String cName, ArrayList<Stock> stocks) {
+        for(Stock stock : stocks) {
+            if(stock.getName().equals(cName)) {
+                return stock;
+            }
+        }
+        return null;
+    }
+
+
     public String toString() {
     	return company.toString();
     }

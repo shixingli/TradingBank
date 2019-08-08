@@ -2,7 +2,7 @@ package Model;
 
 import java.io.*;
 
-public class Customer extends Trader implements java.io.Serializable {
+public class Customer extends Trader implements Serializable {
 
     private CheckingAccount checkingAccount;
     private SavingAccount savingAccount;

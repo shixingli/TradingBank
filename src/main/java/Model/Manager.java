@@ -15,9 +15,9 @@ import java.util.Map;
 import java.util.Set;
 
 public class Manager extends Trader{
-	public static String fileName = "C:/Users/Teddyzhang的PC/Desktop/customer.txt";
+	public static String fileName = "D:\\MyCode\\CS_591_1\\final project\\TradingBank\\src\\main\\java\\Files\\customer.txt";
 	
-	public static String stockFile = "C:/Users/sunzhon/Desktop/CS591-OOB/TradingBank/src/main/java/Model/" + "/stock.txt"; 
+	public static String stockFile = "D:\\MyCode\\CS_591_1\\final project\\TradingBank\\src\\main\\java\\Files\\stock.txt";
 	
 	public static List<Customer> customerList = new ArrayList<>();
     

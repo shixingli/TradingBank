@@ -19,7 +19,8 @@ public abstract class Account {
     public String withDraw(double num) {
         if (this.balance - num < 0) {
         	return "No enough money!";
-        } else {
+        } 
+        else {
             this.balance -= num;
             return "Success!";
         }

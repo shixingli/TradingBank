@@ -1,3 +1,4 @@
+
 import Controller.*;
 import Helper.Tools;
 import Model.Company;
@@ -6,6 +7,7 @@ import Model.Manager;
 import Model.Stock;
 import View.CustomerBondFrame;
 import View.CustomerMainFrame;
+
 import View.CustomerStockFrame;
 import View.Mainframe;
 
@@ -16,9 +18,17 @@ public class TradingSystem {
     private CustomerBondFrame customerBondFrame;
     private Mainframe mainframe;
 
+
     // User
     private Customer customer;
     private Manager manager;
+
+
+
+    public TradingSystem() {
+        // cutomerMainFrame
+        customerMainFrame = new CustomerMainFrame();
+        customerMainFrame.setVisible(true);
 
     private String currentDate;
 
@@ -101,13 +111,6 @@ public class TradingSystem {
         return customerMainFrame;
     }
 
-    public CustomerStockFrame getCustomerStockFrame() {
-        return customerStockFrame;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
 
     public CustomerBondFrame getCustomerBondFrame() {
         return customerBondFrame;
@@ -126,6 +129,7 @@ public class TradingSystem {
     }
 
     public static void main(String[] args) {
+
         TradingSystem tradingSystem = new TradingSystem();
         tradingSystem.customer = new Customer("Gappery", "Li", "asdf", "asdf");
         tradingSystem.manager = new Manager("Gappery", "li", "asdf", "asdf");

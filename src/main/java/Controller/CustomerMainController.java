@@ -1,5 +1,6 @@
 package Controller;
 
+<<<<<<< HEAD
 import Helper.Tools;
 import Model.Account;
 import Model.Customer;
@@ -104,4 +105,3 @@ public class CustomerMainController {
             return customer.getSecurityAccount();
         }
     }
-}

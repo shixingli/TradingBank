@@ -1,5 +1,4 @@
 package View;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.io.FileNotFoundException;

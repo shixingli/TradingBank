@@ -3,17 +3,17 @@ package Model;
 public class main {
 
 	public static void main(String[] args) {
-		Manager manager = new Manager("Bruce", "Zhang", "U45687bedf", "123");
+//		Manager manager = new Manager("Bruce", "Zhang", "U45687bedf", "123");
+//		
+//		Customer customer = new Customer("Shi", "Zhen", "Usdjhfsid123", "456");
+//		manager.addCustomer(customer);
 		
-		Customer customer = new Customer("Shi", "Zhen", "Usdjhfsid123", "456");
-		manager.addCustomer(customer);
-		
-		Company company = new Company("Apple", "LASD123");
-		Company c = new Company("Google", "HJAK567");
-		Stock stock = new Stock(company);
-		manager.addStock(stock);
-		Stock sa = new Stock(c);
-		manager.addStock(sa);
+//		Company company = new Company("Apple", "LASD123");
+//		Company c = new Company("Google", "HJAK567");
+//		Stock stock = new Stock(company);
+//		manager.addStock(stock);
+//		Stock sa = new Stock(c);
+//		manager.addStock(sa);
 		
 //		customer.getCheckingAccount().deposit(100);
 //		customer.getCheckingAccount().transferTo(customer.getSavingAccount(), 23);
@@ -90,6 +90,34 @@ public class main {
 //		System.out.print(customer.getSecurityAccount().getOwnedStocks().get(stock));
 //		
 //		System.out.print(customer.getSecurityAccount().showOwnedStocks());
+		Manager.readCustomerList();
+		
+//		System.out.println(Customer.customerRegister("Lily", "zxc", "U789456", "465"));
+//		
+//		System.out.println(Customer.customerRegister("Bruce", "asdqwd", "U9078123", "123123123"));
+//		
+//		Manager.writeCustomerList();
+		
+		Manager.showCustomerList();
+		
+//		System.out.println(Customer.customerRegister("Bruce", "Zhang", "U9078", "123123123"));
+//		
+//		System.out.println(Customer.customerRegister("Bruce", "asdqwd", "U9078123", "123123123"));
+//		
+//		System.out.println(Customer.customerRegister("Lily", "zxc", "U789456", "465"));
+//		
+//		System.out.println("-----");
+//		
+//		Manager.showCustomerList();
+//		
+//		Manager.writeCustomerList();
+//		
+//		System.out.println(Customer.customerLogin("U9078", "123").toString());
+//		
+//		System.out.println(Customer.customerLogin("U9078", "456").toString());
+		
+//		
+//		Manager.showCustomerList();
 	}
 
 }

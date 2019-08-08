@@ -2,15 +2,27 @@ package Model;
 
 public abstract class Account {
     private double balance;
+    private String descrip;
+    
+	public Account(double balance) {
+        this.balance = balance;
+        this.descrip = "";
+	}
 	
     public double getBalance() {
     	return balance;
     }
-    
-	public Account(double balance) {
-		this.balance = balance;
-	}
 
+    public void setBalance(double num) {
+        this.balance = num;
+    }
+    
+    public void setDescription(String descip) {
+		this.descrip = descip;
+    }
+
+    public String getDescription() {return this.descrip;}
+    
     public String deposit(double num) {
         this.balance += num;
         	return "Success!";

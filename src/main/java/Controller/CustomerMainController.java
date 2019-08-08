@@ -1,6 +1,5 @@
 package Controller;
 
-<<<<<<< HEAD
 import Helper.Tools;
 import Model.Account;
 import Model.Customer;
@@ -67,7 +66,7 @@ public class CustomerMainController {
                 Tools.confirmDialog("Result", account.deposit(value), customerMainFrame);
             } else if (customerMainFrame.getWithdrawRadioButton().isSelected()) {
                 Tools.confirmDialog("Result", account.withDraw(value), customerMainFrame);
-            } else if (customerMainFrame.getTransferRadioButton().isSelected()){
+            } else if (customerMainFrame.getTransferRadioButton().isSelected()) {
                 if (customerMainFrame.getBottom_combobox().getSelectedItem().equals("Saving Account")) {
                     Tools.confirmDialog("Result", account.transferTo(customer.getSavingAccount(), value), customerMainFrame);
                 } else if (customerMainFrame.getBottom_combobox().getSelectedItem().equals("Checking Account")) {
@@ -96,7 +95,7 @@ public class CustomerMainController {
      *                        private methods
      ***************************************************************************/
 
-    private static Account getUpperAccount(CustomerMainFrame customerMainFrame, Customer customer){
+    private static Account getUpperAccount(CustomerMainFrame customerMainFrame, Customer customer) {
         if (customerMainFrame.getComboBox().getSelectedItem().equals("Saving Account")) {
             return customer.getSavingAccount();
         } else if (customerMainFrame.getComboBox().getSelectedItem().equals("Checking Account")) {
@@ -105,3 +104,4 @@ public class CustomerMainController {
             return customer.getSecurityAccount();
         }
     }
+}

@@ -11,7 +11,7 @@ import Helper.*;
 
 public class SecurityAccount extends Account {
 
-    private static final double MINIMUM_START_NUM = 10000;
+    private static final double MINIMUM_START_NUM = 5000;
     private static final double FEE = 0.15876;
 
     //private Map<Stock, Integer> ownedStocks;
@@ -89,7 +89,7 @@ public class SecurityAccount extends Account {
     				n = n + ownedStocks.get(Manager.stockMap.get(ticker)).get(date).get(i);
     			
     			//check if enough shares of stock to sell
-    			if(n>num) {
+    			if(n >= num) {
 	    			
 	    			Stock stock = Manager.stockMap.get(ticker);
 	    			

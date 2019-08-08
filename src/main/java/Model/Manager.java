@@ -15,9 +15,9 @@ import java.util.Map;
 import java.util.Set;
 
 public class Manager extends Trader{
-	public static String fileName = "C:/Users/Teddyzhang的PC/Desktop/customer.txt";
+	public static String fileName = "D:\\MyCode\\CS_591_1\\final project\\TradingBank\\src\\main\\java\\Files\\customer.txt";
 	
-	public static String stockFile = "C:/Users/sunzhon/Desktop/CS591-OOB/TradingBank/src/main/java/Model/" + "/stock.txt"; 
+	public static String stockFile = "D:\\MyCode\\CS_591_1\\final project\\TradingBank\\src\\main\\java\\Files\\stock.txt";
 	
 	public static List<Customer> customerList = new ArrayList<>();
     
@@ -181,10 +181,13 @@ public class Manager extends Trader{
     	bondMap.put(90, 0.3);
     }	
     
-    public String updateStock(String ticker, String date, double newValue) {
+    public static String updateStock(String ticker, String date, double newValue) {
     	
     	if(stockMap.containsKey(ticker)) {
     		stockMap.get(ticker).updateStock(date, newValue);
+    		for(Stock stock : stocks)
+    			if(stock.getCompany().getTicker().equals(ticker))
+    				stock.updateStock(date,newValue);
 
     		return "Success!";
     	}
@@ -202,7 +205,7 @@ public class Manager extends Trader{
     	return "No such Bond!";
     }
     
-    public void addStock(Stock stock) {
+    public static void addStock(Stock stock) {
     	stocks.add(stock);
     	stockMap.put(stock.getCompany().getTicker(), stock);
     }

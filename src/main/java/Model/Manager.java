@@ -17,6 +17,8 @@ import java.util.Set;
 public class Manager extends Trader{
 	public static String fileName = "C:/Users/Teddyzhang的PC/Desktop/customer.txt";
 	
+	public static String stockFile = "C:/Users/sunzhon/Desktop/CS591-OOB/TradingBank/src/main/java/Model/" + "/stock.txt"; 
+	
 	public static List<Customer> customerList = new ArrayList<>();
     
 	public static List<Stock> stocks = new ArrayList<Stock>();
@@ -73,7 +75,7 @@ public class Manager extends Trader{
 	            }
 	        }
 	}
-	
+
 	public static void writeCustomerList() {
 		FileWriter writer;
 		
@@ -96,8 +98,76 @@ public class Manager extends Trader{
 		catch(IOException e) {
 			e.printStackTrace();
 		}
-}
-	
+	}
+
+	public static void readStockList() {
+		File file = new File(stockFile);
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String tempString = null;
+			// read by one line
+			while ((tempString = reader.readLine()) != null) {
+				
+				//split the string
+				String[] strings = tempString.split(";");
+				
+				String companyName = strings[0];
+				String companyTicker= strings[1];
+				
+				Map<String, Double> priceInfo = new HashMap<String,Double>();
+				for (int i=2; i<strings.length-1; i+=2) {
+					priceInfo.put(strings[i], Double.parseDouble(strings[i+1]));
+				}
+				
+				Stock stock = new Stock(new Company(companyName, companyTicker));
+				stock.setPriceInfo(priceInfo);
+				Manager.stocks.add(stock);
+			}
+			
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e1) {
+				}
+			}
+		}
+   }
+
+	public static void writeStockList() {
+		FileWriter writer; 
+		try {
+			writer = new FileWriter(stockFile);
+			
+			BufferedWriter bw = new BufferedWriter(writer);
+			
+			for(Stock stock : stocks) {
+				String s = stock.getCompany().getName() 
+					+ ";" + stock.getCompany().getTicker() + ";";
+				for (Map.Entry<String, Double> entry : stock.getPriceInfo().entrySet()) {
+					s  += entry.getKey() + ";" + entry.getValue() + ";";
+				}
+				s = s.substring(0, s.length()-1);
+				bw.write(s.toString()+ "\r\n");
+
+				stockMap.put(stock.getCompany().getTicker(), stock);
+			}
+		
+			bw.close();
+			writer.close();
+		}
+		catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+
     public static void showCustomerList() {
     	for(Customer customer : customerList)
     		System.out.println(customer.toString());
@@ -153,5 +223,4 @@ public class Manager extends Trader{
     public Stock getAStock(String ticker) {
     	return stockMap.get(ticker);
     }
-    
 }

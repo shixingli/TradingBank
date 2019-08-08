@@ -76,44 +76,6 @@ public class Manager extends Trader{
 	        }
 	}
 
-	public static void readStockList() {
-		File file = new File(stockFile);
-		BufferedReader reader = null;
-		try {
-			reader = new BufferedReader(new FileReader(file));
-			String tempString = null;
-			// read by one line
-			while ((tempString = reader.readLine()) != null) {
-				
-				//split the string
-				String[] strings = tempString.split(";");
-				
-				String companyName = strings[0];
-				String companyTicker= strings[1];
-				
-				Map<String, Double> priceInfo = new HashMap<String,Double>();
-				for (int i=2; i<strings.length; i+=2) {
-					priceInfo.put(strings[i], Double.parseDouble(strings[i+1]));
-				}
-				
-				Stock stock = new Stock(new Company(companyName, companyTicker));
-				stock.setPriceInfo(priceInfo);
-				Manager.stocks.add(stock);
-			}
-			
-			reader.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (reader != null) {
-				try {
-					reader.close();
-				} catch (IOException e1) {
-				}
-			}
-		}
-   }
-	
 	public static void writeCustomerList() {
 		FileWriter writer;
 		
@@ -138,6 +100,44 @@ public class Manager extends Trader{
 		}
 	}
 
+	public static void readStockList() {
+		File file = new File(stockFile);
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String tempString = null;
+			// read by one line
+			while ((tempString = reader.readLine()) != null) {
+				
+				//split the string
+				String[] strings = tempString.split(";");
+				
+				String companyName = strings[0];
+				String companyTicker= strings[1];
+				
+				Map<String, Double> priceInfo = new HashMap<String,Double>();
+				for (int i=2; i<strings.length-1; i+=2) {
+					priceInfo.put(strings[i], Double.parseDouble(strings[i+1]));
+				}
+				
+				Stock stock = new Stock(new Company(companyName, companyTicker));
+				stock.setPriceInfo(priceInfo);
+				Manager.stocks.add(stock);
+			}
+			
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e1) {
+				}
+			}
+		}
+   }
+
 	public static void writeStockList() {
 		FileWriter writer; 
 		try {
@@ -147,9 +147,14 @@ public class Manager extends Trader{
 			
 			for(Stock stock : stocks) {
 				String s = stock.getCompany().getName() 
-					+ ";" + stock.getCompany().getTicker() 
-					+ ";" + stock.getPriceInfo().toString();
+					+ ";" + stock.getCompany().getTicker() + ";";
+				for (Map.Entry<String, Double> entry : stock.getPriceInfo().entrySet()) {
+					s  += entry.getKey() + ";" + entry.getValue() + ";";
+				}
+				s = s.substring(0, s.length()-1);
 				bw.write(s.toString()+ "\r\n");
+
+				stockMap.put(stock.getCompany().getTicker(), stock);
 			}
 		
 			bw.close();
@@ -215,9 +220,4 @@ public class Manager extends Trader{
     public Stock getAStock(String ticker) {
     	return stockMap.get(ticker);
     }
-
-	public static void main(String[] args) {
-		Manager.readStockList();
-		Manager.writeStockList();
-	}
 }

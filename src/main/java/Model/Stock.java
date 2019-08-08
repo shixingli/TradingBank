@@ -14,9 +14,6 @@ public class Stock {
     	this.company = company;
     	
     	priceInfo = new HashMap<String, Double>();
-    	// priceInfo.put("20180804", 12.12);
-    	// priceInfo.put("20180810", 45.45);
-    	// priceInfo.put("20180815", 56.56);
     	
     }
     
@@ -37,7 +34,7 @@ public class Stock {
         this.priceInfo = prices;
     }
     
-    public Map getPriceInfo() {
+    public Map<String, Double> getPriceInfo() {
     	return priceInfo;
     }
     

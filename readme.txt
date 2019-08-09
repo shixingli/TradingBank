@@ -1,11 +1,13 @@
-Game is the entry class of the program, here is the guidance to compile and execute the program.
+TradingSystem class is the entry class of the program, here is the guidance to compile and execute the program.
+
+1. Before running the program
+
+
+2. To run the program, go to src folder, then type
 Type commands below:
 
-javac Game.java
-java Game
-
-During the game, you will be required to input bet amount, actions (hit, stand, split, double up) and whether to replay.
-We use suit and number to represent a card (Spade : J), and the hidden card is represented as XXXX: XX.
+javac TradingSystem.java
+java TradingSystem
 
 
 Thanks for your time!

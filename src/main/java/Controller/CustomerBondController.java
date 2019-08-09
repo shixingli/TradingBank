@@ -25,7 +25,13 @@ public class CustomerBondController {
         customerBondFrame.getBond_comboBox().setModel(new DefaultComboBoxModel(Tools.Bond_TYPE));
         updateBondInfo(customerBondFrame);
         updatePageInfo(customerBondFrame, customer);
+        updateBalance(customerBondFrame, customer);
     }
+
+    public static void updateBalance(CustomerBondFrame customerBondFrame, Customer customer) {
+        customerBondFrame.getBalance_txt().setText(customer.getSecurityAccount().toString());
+    }
+
 
     public static void updateBondTable(CustomerBondFrame customerBondFrame, Customer customer) {
 
@@ -84,6 +90,8 @@ public class CustomerBondController {
             customerBondFrame.getLabel_03().setText(tempBonds[0].getValue() + "");
             customerBondFrame.getLabel_04().setText(tempBonds[0].getBuyDate());
             customerBondFrame.getLabel_05().setText(Tools.dueDateCalculate(tempBonds[0].getBuyDate(), tempBonds[0].getPeriod()));
+            System.out.println(Tools.dueDateCalculate(tempBonds[0].getBuyDate(), tempBonds[0].getPeriod()));
+            System.out.println("???????");
 
             customerBondFrame.getLabel_secondbond().setText("");
             customerBondFrame.getLabel_11().setText("");
@@ -175,6 +183,7 @@ public class CustomerBondController {
         } else {
             Tools.confirmDialog("Result", customer.getSecurityAccount().buyBond(90, Tools.generateUniqueId(), currentDate), customerBondFrame);
         }
+        updateBalance(customerBondFrame, customer);
         refreshView(customerBondFrame, customer);
     }
 
@@ -184,6 +193,7 @@ public class CustomerBondController {
         }
         Tools.confirmDialog("Result", customer.getSecurityAccount().sellBond(tempBonds[num-1].getID(), currentDate), customerBondFrame);
         refreshView(customerBondFrame, customer);
+        updateBalance(customerBondFrame, customer);
     }
 
     public static void back(CustomerBondFrame customerBondFrame, CustomerMainFrame customerMainFrame, Customer customer) {

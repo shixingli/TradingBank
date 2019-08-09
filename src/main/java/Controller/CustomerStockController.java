@@ -23,7 +23,12 @@ public class CustomerStockController {
         flushMarketStocks(customerStockFrame, currentDate, customer);
         flushCustomerStocks(customerStockFrame, customer);
         customerStockFrame.getTxtNumberOfShare_sell().setText("");
+        updateBalance(customerStockFrame, customer);
 
+    }
+
+    public static void updateBalance(CustomerStockFrame customerStockFrame, Customer customer) {
+        customerStockFrame.getStock_balance().setText(customer.getSecurityAccount().toString());
     }
 
     public static void flushMarketStocks(CustomerStockFrame customerStockFrame, String currentDate, Customer customer) {
@@ -34,6 +39,14 @@ public class CustomerStockController {
     public static void flushCustomerStocks(CustomerStockFrame customerStockFrame, Customer customer) {
         customerStockFrame.getCustomer_brought_stock_list().setModel(new DefaultComboBoxModel(customer.getSecurityAccount().showOwnedStocks().toArray()));
         customerStockFrame.getCustomer_brought_stock_list().clearSelection();
+    }
+
+    public static void clearMySelection(CustomerStockFrame customerStockFrame) {
+        customerStockFrame.getCustomer_brought_stock_list().clearSelection();
+    }
+
+    public static void clearAllSelection(CustomerStockFrame customerStockFrame) {
+        customerStockFrame.getMarket_stock_lst().clearSelection();
     }
 
     public static void setBuy(CustomerStockFrame customerStockFrame) {
@@ -68,11 +81,13 @@ public class CustomerStockController {
         System.out.println(Manager.stockMap.get(stockName).getValue(buyDate));
         Tools.confirmDialog("Result", customer.getSecurityAccount().buyStock(stockName, shareNum, buyDate), customerStockFrame);
         flushCustomerStocks(customerStockFrame, customer);
+        updateBalance(customerStockFrame, customer);
     }
 
     private static void sellStock(CustomerStockFrame customerStockFrame, Customer customer, int shareNum, String currentDate) {
         String stockName = Tools.getFirstElementBeforeSpace(customerStockFrame.getCustomer_brought_stock_list().getSelectedValue().toString());
         Tools.confirmDialog("Result", customer.getSecurityAccount().sellStock(stockName, shareNum, currentDate), customerStockFrame);
         flushCustomerStocks(customerStockFrame, customer);
+        updateBalance(customerStockFrame, customer);
     }
 }

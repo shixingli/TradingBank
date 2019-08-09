@@ -20,10 +20,11 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
+import javax.swing.JTextArea;
 
 public class CustomerStockFrame extends JFrame{
 	
-	private String[] stock = {"AAPL193.34","GOOG","YHOO","NASDAQ","NKE"};
+	private String[] stock = {"AAPL193.341111111111111111111111111111111111111111","GOOG","YHOO","NASDAQ","NKE"};
 	private JTextField txtNumberOfShare_sell;
 	private JLabel lblStocks;
 	private JButton Customer_dynamic_botton;
@@ -35,6 +36,7 @@ public class CustomerStockFrame extends JFrame{
 	private JPanel sell_panel;
 	private JList customer_brought_stock_list,market_stock_lst;
 	private JButton back_botton;
+	private JTextArea stock_balance;
 	
 	public CustomerStockFrame()  {
 		getContentPane().setBackground(Color.WHITE);
@@ -67,12 +69,13 @@ public class CustomerStockFrame extends JFrame{
 		panel.add(back_botton);
 		
 		DefaultListModel model = new DefaultListModel();
+		model.addElement("AAA1234567891234567891234567891234");
 	    market_stock_lst = new JList(model);
 	    market_stock_lst.setVisibleRowCount(10);
 	    market_stock_lst.setForeground(Color.WHITE);
 	    market_stock_lst.setBackground(new Color(0, 104, 189));
 	    market_stock_lst.setFont(new Font("Apple SD Gothic Neo", Font.PLAIN, 25));
-		market_stock_lst.setBounds(841, 143, 484, 551);
+		market_stock_lst.setBounds(841, 143, 487, 551);
 		getContentPane().add(market_stock_lst);
 		
 		customer_brought_stock_list = new JList();
@@ -106,6 +109,10 @@ public class CustomerStockFrame extends JFrame{
 		txtNumberOfShare_sell.setBounds(37, 6, 67, 26);
 		sell_panel.add(txtNumberOfShare_sell);
 		txtNumberOfShare_sell.setColumns(10);
+		
+		stock_balance = new JTextArea();
+		stock_balance.setBounds(550, 285, 220, 48);
+		getContentPane().add(stock_balance);
 		
 		
 //        File text = new File("/Users/jasonlee/Desktop/Stock.txt");
@@ -234,6 +241,14 @@ public class CustomerStockFrame extends JFrame{
 	 */
 	public JButton getBack_botton() {
 		return back_botton;
+	}
+
+
+	/**
+	 * @return the stock_balance
+	 */
+	public JTextArea getStock_balance() {
+		return stock_balance;
 	}
 
 

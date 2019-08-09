@@ -1,3 +1,4 @@
+package Main;
 
 import Controller.*;
 import Helper.Tools;
@@ -37,6 +38,7 @@ public class TradingSystem {
         customerMainFrame.getComboBox().addActionListener(e -> {
             CustomerMainController.updateAccountInfo(customerMainFrame, customer);
             CustomerMainController.refreshLowerComboBox(customerMainFrame, customerMainFrame.getComboBox().getSelectedItem().toString());
+            CustomerMainController.updateBondStock(customerMainFrame);
         });
         customerMainFrame.getDepositRadioButton().addActionListener(e -> CustomerMainController.hideComboBox(customerMainFrame));
         customerMainFrame.getWithdrawRadioButton().addActionListener(e -> CustomerMainController.hideComboBox(customerMainFrame));
@@ -47,8 +49,14 @@ public class TradingSystem {
 
         // customerStockFrame
         customerStockFrame = new CustomerStockFrame();
-        customerStockFrame.getCustomer_brought_stock_list().addListSelectionListener(e -> CustomerStockController.setSell(customerStockFrame));
-        customerStockFrame.getMarket_stock_lst().addListSelectionListener(e -> CustomerStockController.setBuy(customerStockFrame));
+        customerStockFrame.getCustomer_brought_stock_list().addListSelectionListener(e -> {
+            CustomerStockController.setSell(customerStockFrame);
+            CustomerStockController.clearAllSelection(customerStockFrame);
+        });
+        customerStockFrame.getMarket_stock_lst().addListSelectionListener(e -> {
+            CustomerStockController.setBuy(customerStockFrame);
+            CustomerStockController.clearMySelection(customerStockFrame);
+        });
         customerStockFrame.getCustomer_sell_botton().addActionListener(e -> CustomerStockController.transaction(customerStockFrame, customer, currentDate));
         customerStockFrame.getBack_botton().addActionListener(e -> CustomerStockController.back(customerStockFrame, customerMainFrame, customer));
 
@@ -74,11 +82,12 @@ public class TradingSystem {
         mainframe.getBtnCreate_init().addActionListener(e -> CreateController.createAccount(mainframe, customer));
         mainframe.getBack_create_panel().addActionListener(e -> CreateController.back(mainframe));
         mainframe.getBack_btn().addActionListener(e -> LoginController.back(mainframe));
+        mainframe.getBtnEnter().addActionListener(e -> MainController.updateDate(mainframe));
 
         //ManagerFrame
         managerFrame = new ManagerFrame();
         managerFrame.getBtnUpdate().addActionListener(e -> ManagerController.updateStock(managerFrame, currentDate));
-        managerFrame.getInfo_Generate().addActionListener(e -> ManagerController.generateReport());
+        managerFrame.getInfo_Generate().addActionListener(e -> ManagerController.generateReport(managerFrame));
         managerFrame.getStock_radio_btn().addActionListener(e -> ManagerController.showStock(managerFrame));
         managerFrame.getBond_radio_btn().addActionListener(e -> ManagerController.showBond(managerFrame));
         managerFrame.getBack_botton().addActionListener(e -> ManagerController.back(managerFrame, mainframe));

@@ -24,6 +24,7 @@ public class CustomerMainController {
         customerMainFrame.getAmount_money_txtfiled().setText("");
         customerMainFrame.getGroup().clearSelection();
         hideComboBox(customerMainFrame);
+        updateBondStock(customerMainFrame);
     }
 
     public static void refreshLowerComboBox(CustomerMainFrame customerMainFrame, String currentType) {
@@ -41,6 +42,15 @@ public class CustomerMainController {
         customerMainFrame.getBottom_combobox().setModel(new DefaultComboBoxModel(accounts));
     }
 
+    public static void updateBondStock(CustomerMainFrame customerMainFrame) {
+        if (customerMainFrame.getComboBox().getSelectedItem().equals("Security Account")) {
+            customerMainFrame.getBtnMybonds().setVisible(true);
+            customerMainFrame.getBtnStock().setVisible(true);
+        } else {
+            customerMainFrame.getBtnMybonds().setVisible(false);
+            customerMainFrame.getBtnStock().setVisible(false);
+        }
+    }
     public static void updateAccountInfo(CustomerMainFrame customerMainFrame, Customer customer) {
         if (customerMainFrame.getComboBox().getSelectedItem().equals("Saving Account")) {
             customerMainFrame.getAccount_info().setText(customer.getSavingAccount().toString());
@@ -65,18 +75,24 @@ public class CustomerMainController {
             Account account = getUpperAccount(customerMainFrame, customer);
             if (customerMainFrame.getDepositRadioButton().isSelected()) {
                 Tools.confirmDialog("Result", account.deposit(value), customerMainFrame);
+                customer.getTransaction().addNewTransaction(account);
             } else if (customerMainFrame.getWithdrawRadioButton().isSelected()) {
                 Tools.confirmDialog("Result", account.withDraw(value), customerMainFrame);
+                customer.getTransaction().addNewTransaction(account);
             } else if (customerMainFrame.getTransferRadioButton().isSelected()) {
                 if (customerMainFrame.getBottom_combobox().getSelectedItem().equals("Saving Account")) {
                     Tools.confirmDialog("Result", account.transferTo(customer.getSavingAccount(), value), customerMainFrame);
+                    customer.getTransaction().addNewTransaction(account);
                 } else if (customerMainFrame.getBottom_combobox().getSelectedItem().equals("Checking Account")) {
                     Tools.confirmDialog("Result", account.transferTo(customer.getCheckingAccount(), value), customerMainFrame);
+                    customer.getTransaction().addNewTransaction(account);
                 } else {
                     Tools.confirmDialog("Result", account.transferTo(customer.getSecurityAccount(), value), customerMainFrame);
+                    customer.getTransaction().addNewTransaction(account);
                 }
             } else {
                 Tools.confirmDialog("Result", "Please choose a type of action", customerMainFrame);
+                customer.getTransaction().addNewTransaction(account);
             }
             updateAccountInfo(customerMainFrame, customer);
         }

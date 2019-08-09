@@ -1,8 +1,10 @@
 package Controller;
 
 import Helper.Tools;
+import Main.TradingSystem;
 import View.CustomerMainFrame;
 import View.Mainframe;
+import View.ManagerFrame;
 
 public class MainController {
 
@@ -18,6 +20,7 @@ public class MainController {
         mainframe.setCustomer(true);
         LoginController.refreshInfo(mainframe);
         CreateController.refreshInfo(mainframe);
+        mainframe.getTextField().setText("");
     }
 
     public static void openCustomer(Mainframe mainframe, CustomerMainFrame customerMainFrame) {
@@ -58,6 +61,15 @@ public class MainController {
         mainframe.setCustomer(true);
         mainframe.getCreate_acc_panel().setVisible(true);
         mainframe.getTwo_login_panel().setVisible(false);
+    }
+
+    public static void updateDate(Mainframe mainframe) {
+        if (Tools.checkDateInput(mainframe.getTextField().getText())) {
+            Tools.confirmDialog("Result", "Updated", mainframe);
+            TradingSystem.currentDate = mainframe.getTextField().getText();
+        } else {
+            Tools.confirmDialog("Result", "Not a date", mainframe);
+        }
     }
 
 }

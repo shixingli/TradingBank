@@ -34,7 +34,7 @@ public class Tools {
 
 
     public static boolean checkDateInput(String input) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm/dd/yyyy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         try {
             simpleDateFormat.setLenient(false);
             Date date = simpleDateFormat.parse(input);

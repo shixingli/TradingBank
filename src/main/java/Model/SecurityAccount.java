@@ -149,7 +149,7 @@ public class SecurityAccount extends Account {
         	//withdraw the same amount money as money for purchasing
             super.withDraw(money);
             super.withDraw(FEE);
-            super.setDescription("bought " + num + " " + ticker + " bond(s) ($" + ((Manager.bondMap.get(bond.getPeriod())) * ownedBonds.get(bond)) + ") in security account.");
+            super.setDescription("bought " + period + " " + id + " bond(s) ($" + ((Manager.bondMap.get(bond.getPeriod())) * ownedBonds.get(bond)) + ") in security account.");
         	return "Success!";
         }      	
     }
@@ -166,7 +166,7 @@ public class SecurityAccount extends Account {
     			
     			//then delete the bond from the map
     			ownedBonds.remove(bond);
-				super.setDescription("sold " + num + " " + ticker + " bond(s) ($" + ((Manager.bondMap.get(bond.getPeriod())) * ownedBonds.get(bond)) + ") in security account.");
+				//super.setDescription("sold " + id + " " + date + " bond(s) ($" + ((Manager.bondMap.get(bond.getPeriod())) * ownedBonds.get(bond)) + ") in security account.");
     			return "Success!";
     			}
     			// sell bond before the date of the bond

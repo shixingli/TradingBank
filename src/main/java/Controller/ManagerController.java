@@ -20,7 +20,7 @@ public class ManagerController {
         managerFrame.getGroup_two().clearSelection();
         refreshBond(managerFrame);
         refreshStock(managerFrame, currentDate);
-        managerFrame.getTextarea().setText("");
+        managerFrame.getTextarea().setText("?????");
         managerFrame.getUpdate_txtfield().setText("");
         managerFrame.getLeft_1().setVisible(false);
         managerFrame.getBond_lst().setVisible(false);
@@ -73,9 +73,23 @@ public class ManagerController {
         MainController.showMain(mainframe);
     }
 
-    public static void generateReport() {
-        //TODO
-
+    public static void generateReport(ManagerFrame managerFrame) {
+        String name = managerFrame.getCustomer_combo().getSelectedItem().toString();
+        Customer temp = new Customer("test", "test", "test", "test");
+        for (Customer customer : Manager.customerList) {
+            if (customer.getFirstName().equals(name)) {
+                temp = customer;
+                break;
+            }
+        }
+        System.out.println(temp.getID());
+        if (managerFrame.getAccount_combo().getSelectedItem().equals("Checking Account")) {
+         managerFrame.getTextarea().setText(Manager.checking);
+        } else if (managerFrame.getAccount_combo().getSelectedItem().equals("Saving Account")) {
+            managerFrame.getTextarea().setText(Manager.saving);
+        } else {
+            managerFrame.getTextarea().setText(Manager.security);
+        }
     }
 
 }

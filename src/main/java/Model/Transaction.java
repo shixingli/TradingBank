@@ -39,8 +39,10 @@ public class Transaction {
 	}
 
 	public String getCheckingTransaction() {
+		System.out.println("enter");
 		String ret = "";
 		for (Object s : record.get("Checking")) {
+			System.out.println("????????????????~~~~~~~~~~~~~~");
 			ret += s.toString() + "\n";
 		}
 		return ret;

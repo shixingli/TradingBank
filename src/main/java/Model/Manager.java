@@ -30,7 +30,27 @@ public class Manager extends Trader{
 	public static Map<Integer, Double> bondMap = new HashMap<Integer, Double>();
 	
 	public static Set<String> customerStringSet = new HashSet<String>();
-    
+
+	public static String checking = "" +
+			"checking account deposited $" + 10000 + "\n" +
+			"checking account withdraw $" + 9 + "\n" +
+			"checking account transfer $" + 9000 + " to security account" + "\n";
+;
+
+	public static String saving = "";
+	public static String security = "security account bought " + 10 + " APPL shares at " + 20190808 + "\n" +
+			"security account bought " + 8 + " GOOGL shares at " + 20190808 + "\n" +
+			"security account bought " + 5 + " TWITR shares at " + 20190808 + "\n" +
+			"security account sold " + 9  + " APPL shares at " + 20190808 + "\n" +
+			"security account bought " + 1 + " 7-Day Bonds at " + 20190808 + "\n" +
+			"security account bought " + 1 + " 7-Day Bonds at " + 20190808 + "\n" +
+			"security account bought " + 1 + " 30-Day Bonds at " + 20190808 + "\n" +
+			"security account bought " + 1 + " 90-Day Bonds at " + 20190808 + "\n" +
+			"security account sold " + 1 + " 7-Day Bonds at " + 20190815 + "\n" +
+			"security account sold " + 1 + " 7-Day Bonds at " + 20190815 + "\n" +
+			"security account sold " + 1 + " 30-Day Bonds at " + 20190815 + "\n";
+
+
 	public static ArrayList<String> getStocks(String date){
     	ArrayList<String> arr = new ArrayList<String>();
     	arr.add("Ticker"+"  "+"Price");

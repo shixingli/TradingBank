@@ -1,4 +1,5 @@
 package View;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.io.FileNotFoundException;
@@ -21,6 +22,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
 
 public class CustomerBondFrame extends JFrame{
 	private JPanel right_coner_panel,panel_1,panel,left_big_panel,panel_3;
@@ -43,7 +45,13 @@ public class CustomerBondFrame extends JFrame{
 	private JButton btnNext;
 	private JButton back_btn;
 	private JLabel page_label;
+
+	public void setPagenumber(int pagenumber) {
+		this.pagenumber = pagenumber;
+	}
+
 	private int pagenumber;
+	private JTextArea balance_txt;
 
 	public CustomerBondFrame() {
 		getContentPane().setBackground(Color.WHITE);
@@ -331,13 +339,14 @@ public class CustomerBondFrame extends JFrame{
 		bottom_panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Choose a Bond:");
-		lblNewLabel.setBounds(-56, 32, 333, 60);
+		lblNewLabel.setBounds(-56, 9, 333, 60);
 		bottom_panel.add(lblNewLabel);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		
 		bond_comboBox = new JComboBox();
-		bond_comboBox.setBounds(198, 39, 356, 55);
+		bond_comboBox.setFont(new Font("Apple SD Gothic Neo", Font.PLAIN, 20));
+		bond_comboBox.setBounds(196, 18, 356, 48);
 		bottom_panel.add(bond_comboBox);
 		
 		right_coner_panel = new JPanel();
@@ -349,18 +358,23 @@ public class CustomerBondFrame extends JFrame{
 		FaceLable = new JLabel("Face Value:");
 		FaceLable.setHorizontalAlignment(SwingConstants.CENTER);
 		FaceLable.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		FaceLable.setBounds(6, 105, 298, 56);
+		FaceLable.setBounds(-17, 105, 298, 56);
 		right_coner_panel.add(FaceLable);
 		
 		lblInterestRate = new JLabel("Interest Rate:");
 		lblInterestRate.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInterestRate.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		lblInterestRate.setBounds(6, 37, 298, 56);
+		lblInterestRate.setBounds(-17, 37, 298, 56);
 		right_coner_panel.add(lblInterestRate);
 		
 		buy_bond_btn = new JButton("Buy");
 		buy_bond_btn.setBounds(1153, 63, 89, 60);
 		bottom_panel.add(buy_bond_btn);
+		
+		balance_txt = new JTextArea();
+		balance_txt.setFont(new Font("Apple SD Gothic Neo", Font.PLAIN, 20));
+		balance_txt.setBounds(937, 79, 179, 48);
+		bottom_panel.add(balance_txt);
 
 
 
@@ -636,5 +650,10 @@ public class CustomerBondFrame extends JFrame{
 		return pagenumber;
 	}
 
-	public void setPagenumber(int pagenumber) {this.pagenumber = pagenumber;}
+	/**
+	 * @return the balance_txt
+	 */
+	public JTextArea getBalance_txt() {
+		return balance_txt;
+	}
 }

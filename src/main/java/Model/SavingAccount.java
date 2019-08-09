@@ -13,7 +13,7 @@ public class SavingAccount extends Account {
 		return "Success!";
 	}
 	
-	@Override
+
 	public String withdraw(double num) {
 		super.setBalance(super.getBalance() - num);
 		super.setDescription("withdrawed $" + num + " on " + 20180819 + " in saving account.");
